@@ -1,0 +1,10 @@
+.body {
+  margin: 2rem;
+  display: flex;
+  gap: 3rem;
+}
+
+.header {
+  background-color: #228be6;
+  padding: 1rem 2rem;
+}

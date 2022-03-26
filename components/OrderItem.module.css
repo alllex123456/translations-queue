@@ -1,0 +1,24 @@
+.row {
+  border-bottom: 1px solid #1864ab;
+}
+
+.row td {
+  padding: 1rem;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-complete {
+  cursor: pointer;
+  background: #1864ab;
+  border: none;
+  color: #fff;
+  font-weight: 700;
+}
+
+.btn-complete:hover {
+  filter: brightness(120%);
+}

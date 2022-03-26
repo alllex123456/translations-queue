@@ -1,0 +1,43 @@
+.form {
+  background-color: #e3fafc;
+  padding: 1rem;
+
+  flex: 0 0 30%;
+  align-self: flex-start;
+}
+
+.controls {
+  margin-bottom: 1rem;
+}
+
+.controls input,
+.controls label,
+.controls select {
+  font: inherit;
+  font-size: 1.6rem;
+}
+
+.controls label {
+  display: block;
+  font-weight: 600;
+}
+
+.controls input,
+.controls select {
+  height: 4rem;
+  width: 100%;
+}
+
+.btn {
+  cursor: pointer;
+  border: none;
+  padding: 1rem;
+  width: 100%;
+  background-color: #228be6;
+  color: #fff;
+  font-weight: 600;
+}
+
+.btn:hover {
+  filter: brightness(120%);
+}
