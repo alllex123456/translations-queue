@@ -27,7 +27,11 @@ export default async function handler(req, res) {
   if (req.method === 'POST') {
     try {
       await db.collection('translationsQueue').insertOne(newOrder);
-      const orders = await db.collection('translationsQueue').find().toArray();
+      const orders = await db
+        .collection('translationsQueue')
+        .find()
+        .sort({ deadline: 1 })
+        .toArray();
       res.status(200).json({ message: orders });
       connect.close();
     } catch (error) {
