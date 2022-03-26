@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/queueHandler.js": {
+      "includeFiles": "lib/queue.json**"
+    }
+  }
+}
