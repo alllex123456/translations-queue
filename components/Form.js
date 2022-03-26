@@ -17,13 +17,13 @@ const Form = (props) => {
     const newOrder = {
       client: enteredClient,
       pages: enteredPages,
-      received: new Date().toLocaleDateString('ro'),
+      received: new Date(),
       deadline: new Date(enteredDeadline),
     };
 
     props.onAddOrder(newOrder);
-    clientInputRef.current.value = '';
-    pagesInputRef.current.value = '';
+    // clientInputRef.current.value = '';
+    // pagesInputRef.current.value = '';
   };
 
   return (

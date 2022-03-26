@@ -7,6 +7,7 @@ const OrderItem = (props) => {
   )} / Time: ${new Date(deadline).getHours()}:${new Date(
     deadline
   ).getMinutes()}`;
+  const formattedReceivedDate = new Date(received).toLocaleDateString('ro');
 
   const completeHandler = () => {
     props.onCompleteOrder(id);
@@ -16,7 +17,7 @@ const OrderItem = (props) => {
     <tr className={classes.row}>
       <td>{client}</td>
       <td>{pages}</td>
-      <td>{received}</td>
+      <td>{formattedReceivedDate}</td>
       <td className={classes.flex}>
         <span>{formattedDeadline}</span>
         <button className={classes['btn-complete']} onClick={completeHandler}>

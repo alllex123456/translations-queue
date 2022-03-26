@@ -3,12 +3,10 @@ import Form from '../components/Form';
 import Orders from '../components/Orders';
 import Layout from '../components/Layout';
 
-// import { getOrders } from './api/queueHandler';
-
 const HomePage = () => {
   const [orders, setOrders] = useState([]);
 
-  const orderUpdates = orders.map((order) => order.id);
+  // const orderUpdates = orders.map((order) => order._id);
 
   const addOrderHandler = (newOrder) => {
     fetch('/api/queueHandler', {
@@ -22,7 +20,7 @@ const HomePage = () => {
       headers: { 'Content-Type': 'application/json' },
     })
       .then((res) => res.json())
-      .then((data) => setOrders(data.orders));
+      .then((data) => setOrders(data.message));
   };
 
   const completeOrderHandler = (id) => {
@@ -34,14 +32,14 @@ const HomePage = () => {
       headers: { 'Content-Type': 'application/json' },
     })
       .then((res) => res.json())
-      .then((data) => setOrders(data.orders));
+      .then((data) => setOrders(data.message));
   };
 
   useEffect(() => {
     fetch('/api/queueHandler')
       .then((res) => res.json())
-      .then((data) => setOrders(data.orders));
-  }, [orderUpdates]);
+      .then((data) => setOrders(data.message));
+  }, []);
 
   return (
     <Layout>
@@ -50,15 +48,5 @@ const HomePage = () => {
     </Layout>
   );
 };
-
-// export function getServerSideProps() {
-//   const orders = getOrders();
-
-//   return {
-//     props: {
-//       orders,
-//     },
-//   };
-// }
 
 export default HomePage;
