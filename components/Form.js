@@ -23,8 +23,8 @@ const Form = (props) => {
     };
 
     props.onAddOrder(newOrder);
-    // clientInputRef.current.value = '';
-    // pagesInputRef.current.value = '';
+    clientInputRef.current.value = '';
+    pagesInputRef.current.value = '';
   };
 
   return (
@@ -56,7 +56,7 @@ const Form = (props) => {
         />
       </div>
       <button className={classes.btn}>
-        {props.isFetching ? 'Registering...' : 'Register order'}
+        {props.isFetching ? 'Loading...' : 'Register order'}
       </button>
     </form>
   );
