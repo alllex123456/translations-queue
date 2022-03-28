@@ -1,6 +1,7 @@
 import classes from './Form.module.css';
 
 import { useRef } from 'react';
+import { Fragment } from 'react/cjs/react.production.min';
 
 const Form = (props) => {
   const clientInputRef = useRef();
@@ -54,7 +55,9 @@ const Form = (props) => {
           required
         />
       </div>
-      <button className={classes.btn}>Register order</button>
+      <button className={classes.btn}>
+        {props.isFetching ? 'Registering...' : 'Register order'}
+      </button>
     </form>
   );
 };

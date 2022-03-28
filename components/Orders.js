@@ -2,6 +2,7 @@ import classes from './Orders.module.css';
 
 import OrderItem from './OrderItem';
 import Modal from './Modal';
+import { Fragment } from 'react/cjs/react.production.min';
 
 const Orders = (props) => {
   return (

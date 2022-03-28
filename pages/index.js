@@ -7,6 +7,7 @@ import Modal from '../components/Modal';
 const HomePage = () => {
   const [orders, setOrders] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
+  const [isRemoving, setIsRemoving] = useState(false);
 
   // const orderUpdates = orders.map((order) => order._id);
 
@@ -30,7 +31,7 @@ const HomePage = () => {
   };
 
   const completeOrderHandler = (id) => {
-    setIsFetching(true);
+    setIsRemoving(true);
     fetch('/api/queueHandler', {
       method: 'DELETE',
       body: JSON.stringify({
@@ -41,7 +42,7 @@ const HomePage = () => {
       .then((res) => res.json())
       .then((data) => {
         setOrders(data.message);
-        setIsFetching(false);
+        setIsRemoving(false);
       });
   };
 
@@ -57,12 +58,9 @@ const HomePage = () => {
 
   return (
     <Layout>
-      {isFetching ? (
-        <Modal />
-      ) : (
-        <Orders orders={orders} onCompleteOrder={completeOrderHandler} />
-      )}
-      <Form onAddOrder={addOrderHandler} />
+      <Orders orders={orders} onCompleteOrder={completeOrderHandler} />
+      <Form onAddOrder={addOrderHandler} isFetching={isFetching} />
+      {isRemoving && <Modal />}
     </Layout>
   );
 };

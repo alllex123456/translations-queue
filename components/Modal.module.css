@@ -1,8 +1,11 @@
 .modal {
-  width: 100vw;
-  height: 100vh;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 15rem;
+  height: 10rem;
   background: none;
-  color: #000;
-  font-size: 3rem;
+  color: #fff;
+  font-size: 2rem;
   text-align: center;
 }

@@ -3,9 +3,9 @@
   padding: 0 1rem;
   background: #e9ecef;
   font-size: 1.6rem;
-  /* border-collapse: collapse; */
   border-collapse: collapse;
   align-self: flex-start;
+  flex: 1 1 50%;
 }
 
 .head td {
@@ -13,4 +13,10 @@
   color: #fff;
   font-weight: 700;
   padding: 2rem 1rem;
+}
+
+@media (max-width: 1000px) {
+  .table {
+    font-size: 1.2rem;
+  }
 }

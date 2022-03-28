@@ -13,6 +13,7 @@
 
 .btn-complete {
   cursor: pointer;
+  width: 10rem;
   background: #1864ab;
   border: none;
   color: #fff;
