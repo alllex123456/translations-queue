@@ -1,6 +1,8 @@
 import { MongoClient } from 'mongodb';
 import { ObjectId } from 'mongodb';
 
+const connectString = `mongodb+srv://${process.env.mongo_user}:${process.env.mongo_pass}@${process.env.mongo_cluster}.vndt4.mongodb.net/${process.env.mongo_database}?retryWrites=true&w=majority`;
+console.log(connectString);
 export default async function handler(req, res) {
   const { client, pages, received, deadline } = req.body;
   const newOrder = {
@@ -13,9 +15,7 @@ export default async function handler(req, res) {
   let connect;
 
   try {
-    connect = await MongoClient.connect(
-      'mongodb+srv://alex:andaluzia231178@cluster0.vndt4.mongodb.net/translationsQueue?retryWrites=true&w=majority'
-    );
+    connect = await MongoClient.connect(connectString);
   } catch (error) {
     res
       .status(500)
