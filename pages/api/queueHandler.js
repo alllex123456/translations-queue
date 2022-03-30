@@ -1,9 +1,13 @@
 import { ObjectId } from 'mongodb';
 import { connectToDatabase } from '../../lib/db-utils';
+import { getSession } from 'next-auth/client';
 
 export default async function handler(req, res) {
+  const session = await getSession({ req });
+  const authenticatedUser = session.user.email;
   const { client, pages, received, deadline } = req.body;
   const newOrder = {
+    id: new Date().toISOString(),
     client,
     pages,
     received,
@@ -24,13 +28,25 @@ export default async function handler(req, res) {
   const db = connect.db();
   if (req.method === 'POST') {
     try {
-      await db.collection('translationsQueue').insertOne(newOrder);
-      const orders = await db
-        .collection('translationsQueue')
-        .find()
-        .sort({ deadline: 1 })
-        .toArray();
-      res.status(200).json({ message: orders });
+      const userObject = await db
+        .collection('users')
+        .findOne({ email: authenticatedUser });
+      const updatedOrders = userObject.orders;
+      updatedOrders.push(newOrder);
+      const response = await db
+        .collection('users')
+        .updateOne(
+          { email: authenticatedUser },
+          { $set: { orders: updatedOrders } }
+        );
+
+      const user = await db
+        .collection('users')
+        .findOne({ email: authenticatedUser });
+      const userOrders = user.orders.sort((a, b) =>
+        a.deadline > b.deadline ? 1 : -1
+      );
+      res.status(200).json({ message: userOrders });
       connect.close();
     } catch (error) {
       res.status(500).json({
@@ -40,46 +56,28 @@ export default async function handler(req, res) {
     }
   }
 
-  if (req.method === 'GET') {
-    try {
-      const orders = await db
-        .collection('translationsQueue')
-        .find()
-        .sort({ deadline: 1 })
-        .toArray();
-      const objectOrder = orders.map((order) => ({
-        _id: order._id.toString(),
-        ...order,
-      }));
-      res.status(200).json({ message: objectOrder });
-      connect.close();
-    } catch (error) {
-      res.status(500).json({
-        message:
-          error.message ||
-          'Connected to the database, but could not fetch data',
-      });
-      connect.close();
-    }
-  }
-
   if (req.method === 'DELETE') {
     try {
-      const toRemove = await db
-        .collection('translationsQueue')
-        .find({ _id: ObjectId(req.body.id) })
-        .toArray();
-      await db.collection('translationsQueue').deleteOne(toRemove[0]);
-      const updatedCollection = await db
-        .collection('translationsQueue')
-        .find()
-        .sort({ deadline: 1 })
-        .toArray();
-      const objectOrder = updatedCollection.map((order) => ({
-        _id: order._id.toString(),
-        ...order,
-      }));
-      res.status(200).json({ message: objectOrder });
+      const removeUser = await db
+        .collection('users')
+        .findOne({ email: authenticatedUser });
+      const updatedOrders = removeUser.orders.filter(
+        (order) => order.id !== req.body.id
+      );
+      const updateMongo = await db
+        .collection('users')
+        .updateOne(
+          { email: authenticatedUser },
+          { $set: { orders: updatedOrders } }
+        );
+
+      const user = await db
+        .collection('users')
+        .findOne({ email: authenticatedUser });
+      const userOrders = user.orders.sort((a, b) =>
+        a.deadline > b.deadline ? 1 : -1
+      );
+      res.status(200).json({ message: userOrders });
       connect.close();
     } catch (error) {
       res.status(500).json({

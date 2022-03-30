@@ -3,11 +3,13 @@ import classes from './OrderItem.module.css';
 
 const OrderItem = (props) => {
   const { id, client, received, deadline, pages } = props;
-  const formattedDeadline = `${new Date(deadline).toLocaleDateString(
-    'ro'
-  )} / Time: ${new Date(deadline).getHours()}:${new Date(
-    deadline
-  ).getMinutes()}`;
+  const formattedDeadline = `${new Date(deadline).toLocaleDateString('ro', {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  })} `;
   const formattedReceivedDate = new Date(received).toLocaleDateString('ro');
 
   const completeHandler = () => {

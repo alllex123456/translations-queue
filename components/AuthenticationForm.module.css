@@ -58,3 +58,7 @@
 .toggle:hover {
   border: 2px solid #228be6;
 }
+
+.loading {
+  font-size: 1.6rem;
+}

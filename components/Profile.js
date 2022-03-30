@@ -1,14 +1,12 @@
-import { useContext, useState, useEffect } from 'react';
-import AuthContext from '../store/auth-context';
+import { useState, useEffect } from 'react';
+
 import Orders from './Orders';
 import Form from './Form';
 import Modal from './Modal';
 import { Fragment } from 'react';
 
-const Profile = () => {
-  const authCtx = useContext(AuthContext);
-
-  const [orders, setOrders] = useState([]);
+const Profile = (props) => {
+  const [orders, setOrders] = useState(props.orders);
 
   const [isFetching, setIsFetching] = useState(false);
   const [isRemoving, setIsRemoving] = useState(false);
@@ -29,7 +27,6 @@ const Profile = () => {
       .then((data) => {
         setOrders(data.message);
         setIsFetching(false);
-        console.log(data.log);
       });
   };
 
@@ -48,16 +45,6 @@ const Profile = () => {
         setIsRemoving(false);
       });
   };
-
-  useEffect(() => {
-    setIsFetching(true);
-    fetch('/api/queueHandler')
-      .then((res) => res.json())
-      .then((data) => {
-        setOrders(data.message);
-        setIsFetching(false);
-      });
-  }, []);
 
   return (
     <Fragment>

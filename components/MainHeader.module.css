@@ -1,4 +1,51 @@
 .header {
   background-color: #228be6;
   padding: 1rem 2rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 3rem;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.user {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-right: 5rem;
+}
+
+.header a {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  border-bottom: 1px solid transparent;
+}
+
+.header a:hover {
+  border-bottom: 1px solid #fff;
+}
+
+.header button {
+  cursor: pointer;
+  font: inherit;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  border: 2px solid #fff;
+  padding: 1rem;
+  border-radius: 2px;
+  background: transparent;
+}
+
+.header button:hover {
+  outline: 3px solid #fff;
 }

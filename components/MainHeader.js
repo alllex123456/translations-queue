@@ -1,17 +1,31 @@
 import Link from 'next/link';
+import { useSession, signOut } from 'next-auth/client';
+import { useRouter } from 'next/router';
 import classes from './MainHeader.module.css';
-import { useContext } from 'react';
-import AuthContext from '../store/auth-context';
 
 const MainHeader = (props) => {
-  const authCtx = useContext(AuthContext);
+  const router = useRouter();
+  const [session, loading] = useSession();
+
+  const signoutHandler = () => {
+    signOut({ redirect: false });
+    router.replace('/');
+  };
+
   return (
     <header className={classes.header}>
-      <h1>Translations Queue</h1>
-      <div>
-        {!authCtx.isLoggedIn && <Link href="/">Log in</Link>}
-        {authCtx.isLoggedIn && <Link href="/">Profile</Link>}
-        {authCtx.isLoggedIn && <Link href="/">Log out</Link>}
+      <h1>Translations Scheduler</h1>
+      <div className={classes.navigation}>
+        {session && (
+          <p className={classes.user}>Logged in as: {session.user.email}</p>
+        )}
+        {!session && <Link href="/">Log in</Link>}
+        {session && <Link href="/profile">Profile</Link>}
+        {session && (
+          <button type="button" onClick={signoutHandler}>
+            Log out
+          </button>
+        )}
       </div>
     </header>
   );

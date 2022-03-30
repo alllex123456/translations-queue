@@ -1,20 +1,21 @@
 import '../styles/globals.css';
 import NextNProgress from 'nextjs-progressbar';
 import Head from 'next/head';
-import { AuthContextProvider } from '../store/auth-context';
+
 import Layout from '../components/Layout';
+import { Fragment } from 'react';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <AuthContextProvider>
+    <Fragment>
       <Head>
-        <title>Translations Queue</title>
+        <title>Translations Scheduler</title>
       </Head>
       <Layout>
         <Component {...pageProps} />
       </Layout>
-      <NextNProgress />
-    </AuthContextProvider>
+      <NextNProgress height={6} color="#fff" options={{ showSpinner: false }} />
+    </Fragment>
   );
 }
 

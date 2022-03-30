@@ -1,10 +1,14 @@
 import classes from './AuthenticationForm.module.css';
 
 import { useState, useRef } from 'react';
+import { signIn } from 'next-auth/client';
+import { useRouter } from 'next/router';
 
 const AuthenticationForm = (props) => {
+  const router = useRouter();
   const [isLogin, setIsLogin] = useState(true);
-
+  const [loading, setLoading] = useState(false);
+  const [signedUp, setSignedUp] = useState(false);
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const checkPasswordInputRef = useRef();
@@ -13,13 +17,23 @@ const AuthenticationForm = (props) => {
     setIsLogin((previous) => !previous);
   };
 
-  function submitHandler(e) {
+  async function submitHandler(e) {
     e.preventDefault();
     const enteredEmail = emailInputRef.current.value;
     const enterePassword = passwordInputRef.current.value;
 
     if (isLogin) {
+      setLoading(true);
+      const response = await signIn('credentials', {
+        redirect: false,
+        email: enteredEmail,
+        password: enterePassword,
+      });
+      setLoading(false);
+      if (!response.error) router.replace('/profile');
+      if (response.error) alert(response.error);
     } else {
+      setLoading(true);
       const enteredCheckPassword = checkPasswordInputRef.current.value;
       fetch('api/signup', {
         method: 'POST',
@@ -33,6 +47,8 @@ const AuthenticationForm = (props) => {
         .then((res) => res.json())
         .then((data) => {
           setIsLogin(true);
+          setLoading(false);
+          setSignedUp(data.message);
         });
     }
   }
@@ -63,6 +79,8 @@ const AuthenticationForm = (props) => {
       <button type="button" className={classes.toggle} onClick={toggleLogin}>
         {isLogin ? 'or create new account' : 'or sign in with existing account'}
       </button>
+      {loading && <p className={classes.loading}>Please wait...</p>}
+      <p className={classes.loading}>{signedUp}</p>
     </form>
   );
 };

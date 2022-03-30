@@ -16,8 +16,8 @@ const Orders = (props) => {
       <tbody className={classes.body}>
         {props.orders.map((order) => (
           <OrderItem
-            key={order._id}
-            id={order._id}
+            key={order.id}
+            id={order.id}
             client={order.client}
             received={order.received}
             deadline={order.deadline}
