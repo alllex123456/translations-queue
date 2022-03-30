@@ -75,6 +75,7 @@ export default async function handler(req, res) {
       const updatedCollection = await db
         .collection('translationsQueue')
         .find()
+        .sort({ deadline: 1 })
         .toArray();
       const objectOrder = updatedCollection.map((order) => ({
         _id: order._id.toString(),
