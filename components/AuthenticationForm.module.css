@@ -1,0 +1,60 @@
+.form {
+  width: 50rem;
+  margin: 10rem auto;
+  padding: 3rem;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+  border: 2px solid #228be6;
+  text-align: center;
+}
+
+.controls {
+  margin-bottom: 3rem;
+}
+
+.controls input,
+.controls label {
+  display: block;
+  font: inherit;
+  font-size: 1.6rem;
+}
+
+.controls label {
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.controls input {
+  height: 4rem;
+  width: 100%;
+  text-align: center;
+}
+
+.action {
+  font: inherit;
+  width: 20rem;
+  margin: 0 auto 1rem;
+  font-size: 1.6rem;
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  background: #228be6;
+  padding: 1.5rem;
+  border: none;
+}
+
+.action:hover {
+  filter: brightness(120%);
+}
+
+.toggle {
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  color: #228be6;
+  border: 2px solid transparent;
+}
+
+.toggle:hover {
+  border: 2px solid #228be6;
+}
