@@ -1,15 +1,16 @@
 .form {
+  margin-top: 2rem;
   background-color: #e3fafc;
   padding: 1rem;
-}
-
-.controls {
-  margin-bottom: 1rem;
 }
 
 .title {
   font-size: 2rem;
   font-weight: 500;
+}
+
+.controls {
+  margin-bottom: 2rem;
 }
 
 .controls input,

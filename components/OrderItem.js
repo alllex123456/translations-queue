@@ -1,4 +1,3 @@
-import Modal from './Modal';
 import classes from './OrderItem.module.css';
 
 const OrderItem = (props) => {

@@ -1,7 +1,8 @@
+import classes from './MainHeader.module.css';
+
 import Link from 'next/link';
 import { useSession, signOut } from 'next-auth/client';
 import { useRouter } from 'next/router';
-import classes from './MainHeader.module.css';
 
 const MainHeader = (props) => {
   const router = useRouter();

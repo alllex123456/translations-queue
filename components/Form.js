@@ -1,12 +1,17 @@
 import classes from './Form.module.css';
 
 import { useRef } from 'react';
-import { Fragment } from 'react/cjs/react.production.min';
 
 const Form = (props) => {
   const clientInputRef = useRef();
   const pagesInputRef = useRef();
   const deadlineInputRef = useRef();
+
+  const clientNames = props.clients.map((client) => (
+    <option value={client.name.toLowerCase()}>
+      {client.name.toUpperCase()}
+    </option>
+  ));
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -29,16 +34,11 @@ const Form = (props) => {
 
   return (
     <form className={classes.form} onSubmit={submitHandler}>
+      <p className={classes.title}>Add new order</p>
       <div className={classes.controls}>
         <label htmlFor="client">Client:</label>
         <select id="client" ref={clientInputRef} required>
-          <option value="">select...</option>
-          <option value="Metafrasis">Metafrasis</option>
-          <option value="Ada Traduceri">Ada Traduceri</option>
-          <option value="Das Mak">Das Mak</option>
-          <option value="Complet Trad">Complet Trad</option>
-          <option value="Traduceri 10">Traduceri 10</option>
-          <option value="Activ Traduceri">Activ Traduceri</option>
+          {clientNames}
         </select>
       </div>
       <div className={classes.controls}>

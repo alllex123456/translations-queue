@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react';
+import classes from './Profile.module.css';
 
+import { useState } from 'react';
+import { Fragment } from 'react';
 import Orders from './Orders';
 import Form from './Form';
 import Modal from './Modal';
-import { Fragment } from 'react';
+import AddClient from './AddClient';
 
 const Profile = (props) => {
   const [orders, setOrders] = useState(props.orders);
@@ -49,7 +51,15 @@ const Profile = (props) => {
   return (
     <Fragment>
       <Orders orders={orders} onCompleteOrder={completeOrderHandler} />
-      <Form onAddOrder={addOrderHandler} isFetching={isFetching} />
+
+      <div className={classes['form-group']}>
+        <Form
+          clients={props.clients}
+          onAddOrder={addOrderHandler}
+          isFetching={isFetching}
+        />
+        <AddClient />
+      </div>
       {isRemoving && <Modal />}
     </Fragment>
   );
