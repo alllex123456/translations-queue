@@ -17,7 +17,7 @@ const OrderItem = (props) => {
 
   return (
     <tr className={classes.row}>
-      <td>{client}</td>
+      <td>{client.toUpperCase()}</td>
       <td>{pages}</td>
       <td>{formattedReceivedDate}</td>
       <td className={classes.flex}>

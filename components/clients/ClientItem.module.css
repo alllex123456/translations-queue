@@ -1,0 +1,10 @@
+.item {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  margin-bottom: 0.5rem;
+  padding: 0 1rem;
+
+  background-color: rgb(227, 224, 238);
+}

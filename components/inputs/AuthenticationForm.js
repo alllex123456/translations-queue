@@ -1,7 +1,7 @@
 import classes from './AuthenticationForm.module.css';
 
 import { useState, useRef } from 'react';
-import { signIn } from 'next-auth/client';
+import { signIn, getSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
 
 const AuthenticationForm = (props) => {

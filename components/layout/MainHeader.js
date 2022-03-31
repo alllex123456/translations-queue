@@ -10,7 +10,7 @@ const MainHeader = (props) => {
 
   const signoutHandler = () => {
     signOut({ redirect: false });
-    router.replace('/');
+    router.replace('/auth');
   };
 
   return (
@@ -21,8 +21,10 @@ const MainHeader = (props) => {
           <p className={classes.user}>Logged in as: {session.user.email}</p>
         )}
         {!session && <Link href="/">Log in</Link>}
+        {session && <Link href="/">Records</Link>}
+        {session && <Link href="/clients">Clients</Link>}
         {session && <Link href="/profile">Profile</Link>}
-        {session && (
+        {session && !loading && (
           <button type="button" onClick={signoutHandler}>
             Log out
           </button>

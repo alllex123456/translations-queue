@@ -8,7 +8,7 @@ const Orders = (props) => {
       <thead className={classes.head}>
         <tr>
           <td>Client</td>
-          <td>Est. pages</td>
+          <td>Estimated pages</td>
           <td>Date received</td>
           <td>Deadline</td>
         </tr>

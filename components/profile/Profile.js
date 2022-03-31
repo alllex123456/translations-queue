@@ -2,16 +2,25 @@ import classes from './Profile.module.css';
 
 import { useState } from 'react';
 import { Fragment } from 'react';
-import Orders from './Orders';
-import Form from './Form';
-import Modal from './Modal';
-import AddClient from './AddClient';
+
+import { ClipLoader } from 'react-spinners';
+import { css } from '@emotion/react';
+
+import Orders from '../orders/Orders';
+import Form from '../inputs/Form';
+import AddClient from '../inputs/AddClient';
 
 const Profile = (props) => {
   const [orders, setOrders] = useState(props.orders);
 
   const [isFetching, setIsFetching] = useState(false);
+
   const [isRemoving, setIsRemoving] = useState(false);
+  const override = css`
+    position: absolute;
+    left: 35rem;
+    top: 4rem;
+  `;
 
   const addOrderHandler = (newOrder) => {
     setIsFetching(true);
@@ -50,8 +59,12 @@ const Profile = (props) => {
 
   return (
     <Fragment>
-      <Orders orders={orders} onCompleteOrder={completeOrderHandler} />
-
+      <Orders
+        isRemoving={isRemoving}
+        orders={orders}
+        onCompleteOrder={completeOrderHandler}
+      />
+      <ClipLoader css={override} loading={isRemoving} size={30} color="white" />
       <div className={classes['form-group']}>
         <Form
           clients={props.clients}
@@ -60,7 +73,6 @@ const Profile = (props) => {
         />
         <AddClient />
       </div>
-      {isRemoving && <Modal />}
     </Fragment>
   );
 };
