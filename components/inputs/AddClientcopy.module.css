@@ -10,29 +10,43 @@
   font-weight: 500;
 }
 
-.controls {
+.controls,
+.controls-flex {
   margin-bottom: 2rem;
+}
+
+.controls-flex {
+  display: flex;
+  gap: 1rem;
+}
+
+.controls-flex * {
+  flex: 1 1 100%;
 }
 
 .message {
   font-size: 1.5rem;
 }
 
-.controls input,
-.controls label,
-.controls select {
+.form input,
+.form label,
+.form select {
   font: inherit;
   font-size: 1.6rem;
 }
 
-.controls label {
+.form label {
   display: block;
   font-weight: 600;
 }
 
-.controls input,
-.controls select {
+.form input,
+.form select {
   height: 4rem;
+  width: 100%;
+}
+
+.form textarea {
   width: 100%;
 }
 

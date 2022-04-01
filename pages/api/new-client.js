@@ -6,9 +6,31 @@ export default async function handler(req, res) {
   const session = await getSession({ req });
   const authenticatedUser = session.user.email;
 
+  const {
+    name,
+    taxNumber,
+    registrationNumber,
+    registeredOffice,
+    phone,
+    email,
+    bankNumber,
+    bank,
+    rate,
+    notes,
+  } = req.body;
+
   const newClient = {
     id: new Date().toISOString(),
-    name: req.body.name,
+    name,
+    taxNumber,
+    registrationNumber,
+    registeredOffice,
+    phone,
+    email,
+    bankNumber,
+    bank,
+    rate,
+    notes,
   };
 
   let client;

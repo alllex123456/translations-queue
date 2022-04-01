@@ -8,3 +8,26 @@
 
   background-color: rgb(227, 224, 238);
 }
+
+.item p {
+  font-size: 1.4rem;
+  border-left: 1px solid #333;
+  padding-left: 1rem;
+}
+
+.name {
+  flex: 0 0 40%;
+}
+
+.name h3 {
+  font-weight: 400;
+}
+
+.group {
+  flex: 0 0 20%;
+}
+
+.actions {
+  margin-left: auto;
+  cursor: pointer;
+}

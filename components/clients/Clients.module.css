@@ -1,4 +1,17 @@
 .list {
   list-style: none;
-  width: 100rem;
+}
+
+.register {
+  background-color: aliceblue;
+  flex: 1 1 80rem;
+}
+
+.register h2 {
+  margin-left: 1rem;
+}
+
+.loading {
+  font-size: 1.6rem;
+  font-weight: 700;
 }

@@ -34,5 +34,11 @@ h2 {
 }
 
 h3 {
-  font-size: 2rem;
+  font-size: 1.6rem;
+}
+
+.flex {
+  width: 100%;
+  display: flex;
+  gap: 2rem;
 }
