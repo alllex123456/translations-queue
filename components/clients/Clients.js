@@ -20,7 +20,7 @@ const Clients = () => {
       <h2>Clients Register</h2>
       <ul className={classes.list}>
         {clients.map((client) => (
-          <ClientItem id={client.id} name={client.name} rate={client.rate} />
+          <ClientItem key={client.id} name={client.name} rate={client.rate} />
         ))}
       </ul>
     </section>
