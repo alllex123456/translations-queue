@@ -30,7 +30,7 @@ const AuthenticationForm = (props) => {
         password: enterePassword,
       });
       setLoading(false);
-      if (!response.error) router.replace('/profile');
+      if (!response.error) router.replace('/scheduler');
       if (response.error) alert(response.error);
     } else {
       setLoading(true);
