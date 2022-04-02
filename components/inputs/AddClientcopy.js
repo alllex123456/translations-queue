@@ -63,7 +63,7 @@ const AddClient = (props) => {
       <p className={classes.title}>Add new client</p>
       <form onSubmit={addClientHandler}>
         <div className={classes.controls}>
-          <label htmlFor="name">Client's legal name:</label>
+          <label htmlFor="name">Client legal name:</label>
           <input type="text" id="name" ref={nameInputRef} />
         </div>
 
