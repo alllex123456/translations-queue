@@ -10,7 +10,7 @@ const Clients = () => {
   useEffect(() => {
     const fetchClients = async () => {
       setIsLoading(true);
-      const request = await fetch('/api/get-clients');
+      const request = await fetch('/api/clients/get-clients');
       const response = await request.json();
       setClients(response.message);
       setIsLoading(false);

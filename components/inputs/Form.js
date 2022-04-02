@@ -6,9 +6,7 @@ const Form = (props) => {
   const clientInputRef = useRef();
   const pagesInputRef = useRef();
   const deadlineInputRef = useRef();
-  const sortedClientNames = props.clients.sort((a, b) =>
-    a.name > b.name ? 1 : -1
-  );
+
   const clientNames = props.clients.map((client) => (
     <option key={client.id} value={client.name.toLowerCase()}>
       {client.name.toUpperCase()}

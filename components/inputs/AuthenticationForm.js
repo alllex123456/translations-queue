@@ -35,7 +35,7 @@ const AuthenticationForm = (props) => {
     } else {
       setLoading(true);
       const enteredCheckPassword = checkPasswordInputRef.current.value;
-      fetch('api/signup', {
+      fetch('api/auth/signup', {
         method: 'POST',
         body: JSON.stringify({
           email: enteredEmail,

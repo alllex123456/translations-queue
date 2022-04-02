@@ -1,0 +1,35 @@
+.list {
+  background-color: aliceblue;
+  width: 80rem;
+  margin: 0 auto;
+  padding: 3rem;
+}
+
+.list input {
+  width: 100%;
+  height: 3rem;
+}
+
+.list a {
+  color: blueviolet;
+}
+
+.item {
+  border-bottom: 1px solid #333;
+}
+
+.item p {
+  font-size: 1.6rem;
+}
+
+.actions {
+  margin-top: 4rem;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.btn {
+  margin-right: 1rem;
+  width: 10rem;
+}

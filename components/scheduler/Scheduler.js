@@ -1,4 +1,4 @@
-import classes from './Profile.module.css';
+import classes from './Scheduler.module.css';
 
 import { useState } from 'react';
 import { Fragment } from 'react';
@@ -24,7 +24,7 @@ const Profile = (props) => {
 
   const addOrderHandler = (newOrder) => {
     setIsFetching(true);
-    fetch('/api/queueHandler', {
+    fetch('/api/orders/queueHandler', {
       method: 'POST',
       body: JSON.stringify({
         client: newOrder.client,
@@ -43,7 +43,7 @@ const Profile = (props) => {
 
   const completeOrderHandler = (id) => {
     setIsRemoving(true);
-    fetch('/api/queueHandler', {
+    fetch('/api/orders/queueHandler', {
       method: 'DELETE',
       body: JSON.stringify({
         id: id,
@@ -71,7 +71,7 @@ const Profile = (props) => {
           onAddOrder={addOrderHandler}
           isFetching={isFetching}
         />
-        <AddClient />
+        {/* <AddClient /> */}
       </div>
     </Fragment>
   );

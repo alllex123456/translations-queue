@@ -40,5 +40,6 @@ h3 {
 .flex {
   width: 100%;
   display: flex;
+
   gap: 2rem;
 }

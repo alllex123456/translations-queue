@@ -16,14 +16,14 @@ export async function getServerSideProps(context) {
     };
   }
 
-  if (session) {
-    return {
-      redirect: {
-        destination: '/profile',
-        permanent: false,
-      },
-    };
-  }
+  // if (session) {
+  //   return {
+  //     redirect: {
+  //       destination: '/',
+  //       permanent: false,
+  //     },
+  //   };
+  // }
 
   return {
     props: { session },

@@ -23,7 +23,8 @@ const MainHeader = (props) => {
         {!session && <Link href="/">Log in</Link>}
         {session && <Link href="/">Records</Link>}
         {session && <Link href="/clients">Clients</Link>}
-        {session && <Link href="/profile">Profile</Link>}
+        {session && <Link href="/scheduler">Scheduler</Link>}
+        {session && <Link href="/profile">User profile</Link>}
         {session && !loading && (
           <button type="button" onClick={signoutHandler}>
             Log out

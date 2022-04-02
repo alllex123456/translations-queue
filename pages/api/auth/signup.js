@@ -1,4 +1,4 @@
-import { connectToDatabase, hashPassword } from '../../lib/db-utils';
+import { connectToDatabase, hashPassword } from '../../../lib/db-utils';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return;

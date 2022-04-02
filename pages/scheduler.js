@@ -1,11 +1,11 @@
-import Profile from '../components/profile/Profile';
+import Scheduler from '../components/scheduler/Scheduler';
 
 import { connectToDatabase } from '../lib/db-utils';
 import { getSession } from 'next-auth/client';
 
-const ProfilePage = (props) => {
+const SchedulerPage = (props) => {
   return (
-    <Profile clients={props.clients} orders={props.orders} id={props.id} />
+    <Scheduler clients={props.clients} orders={props.orders} id={props.id} />
   );
 };
 
@@ -28,4 +28,4 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default ProfilePage;
+export default SchedulerPage;

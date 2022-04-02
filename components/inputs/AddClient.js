@@ -12,7 +12,7 @@ const AddClient = (props) => {
     const enteredName = nameInputRef.current.value;
 
     setIsAdding(true);
-    const response = await fetch('/api/new-client', {
+    const response = await fetch('/api/clients/new-client', {
       method: 'POST',
       body: JSON.stringify({
         name: enteredName,
