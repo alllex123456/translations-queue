@@ -1,10 +1,12 @@
 import classes from './ClientDetails.module.css';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 import Button from '../layout/Button';
 
 const ClientDetails = (props) => {
   const { client } = props;
+  const router = useRouter();
 
   const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState(client.name);
@@ -46,9 +48,16 @@ const ClientDetails = (props) => {
       console.log(data.message);
     }
   };
-  const removeHandler = () => {
+  const removeHandler = async () => {
     if (isEditing) {
       setIsEditing(false);
+    }
+    if (isEditing) {
+      await fetch('/api/clients/remove-client', {
+        method: 'DELETE',
+        body: JSON.stringify({ clientId: router.query.clientId }),
+        headers: { 'Content-Type': 'application/json' },
+      });
     }
   };
 
