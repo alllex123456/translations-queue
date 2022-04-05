@@ -1,0 +1,28 @@
+.item,
+.header {
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+}
+
+.item p:first-child,
+.header h3 {
+  flex: 1 1 25rem;
+}
+
+.header {
+  font-size: 1.8rem;
+  min-width: 100rem;
+}
+
+.item {
+  min-width: 100rem;
+  font-size: 1.6rem;
+  border-bottom: 1px solid #333;
+}
+
+.item *,
+.header * {
+  text-align: left;
+  flex: 1 1 20rem;
+}

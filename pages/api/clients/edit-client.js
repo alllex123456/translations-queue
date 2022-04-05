@@ -29,6 +29,7 @@ export default async function (req, res) {
     res
       .status(500)
       .json({ message: 'Could not establish a connection to the database' });
+    client.close();
   }
 
   try {
@@ -62,7 +63,9 @@ export default async function (req, res) {
       );
     client.close();
     res.status(201).json({ message: 'Client has been successfully updated!' });
+    client.close();
   } catch (error) {
     res.status(500).json({ message: error.message });
+    client.close();
   }
 }

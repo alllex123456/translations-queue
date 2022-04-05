@@ -20,7 +20,7 @@ export default async function handler(req, res) {
   } = req.body;
 
   const newClient = {
-    id: new Date().toISOString(),
+    id: name.replaceAll(' ', '-'),
     name,
     taxNumber,
     registrationNumber,
@@ -38,6 +38,7 @@ export default async function handler(req, res) {
     client = await connectToDatabase();
   } catch (error) {
     res.status(500).json({ message: 'Could not connect to database' });
+    client.close();
   }
 
   try {
@@ -55,5 +56,6 @@ export default async function handler(req, res) {
     res.status(500).json({
       message: 'Database contacted, but could not connect register the data',
     });
+    client.close();
   }
 }

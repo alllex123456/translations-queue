@@ -3,30 +3,31 @@ import { getSession } from 'next-auth/client';
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') return;
-
   const session = await getSession({ req });
   const authenticatedUser = session.user.email;
 
-  let client;
+  let connect;
 
   try {
-    client = await connectToDatabase();
+    connect = await connectToDatabase();
   } catch (error) {
-    res.status(500).json({ message: 'Could not connect to database' });
-    client.close();
+    res.status(500).json({
+      message: error.message || 'Could not connect to the database',
+    });
+    connect.close();
   }
 
-  const db = client.db();
-
   try {
-    const user = await db
+    const user = await connect
+      .db()
       .collection('users')
       .findOne({ email: authenticatedUser });
-    const userClients = user.clients;
-    res.status(201).json({ message: userClients });
-    client.close();
+    res.status(201).json({ message: user.invoicing });
+    connect.close();
   } catch (error) {
-    res.status(500).json({ message: 'Could not find a client' });
-    client.close();
+    res.status(500).json({
+      message: error.message || 'Could not fetch the data',
+    });
+    connect.close();
   }
 }

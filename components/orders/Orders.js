@@ -8,7 +8,7 @@ const Orders = (props) => {
       <thead className={classes.head}>
         <tr>
           <td>Client</td>
-          <td>Estimated pages</td>
+          <td>Estimated workload</td>
           <td>Date received</td>
           <td>Deadline</td>
         </tr>
@@ -21,7 +21,7 @@ const Orders = (props) => {
             client={order.client}
             received={order.received}
             deadline={order.deadline}
-            pages={order.pages}
+            count={order.count}
             onCompleteOrder={props.onCompleteOrder}
           />
         ))}

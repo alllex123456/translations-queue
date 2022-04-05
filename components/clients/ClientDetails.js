@@ -52,13 +52,20 @@ const ClientDetails = (props) => {
     if (isEditing) {
       setIsEditing(false);
     }
-    if (isEditing) {
-      await fetch('/api/clients/remove-client', {
+    if (!isEditing) {
+      const response = await fetch('/api/clients/remove-client', {
         method: 'DELETE',
         body: JSON.stringify({ clientId: router.query.clientId }),
         headers: { 'Content-Type': 'application/json' },
       });
+      const data = await response.json();
+      alert(data.message);
+      router.replace('/clients');
     }
+  };
+
+  const ontoStatement = () => {
+    router.push(`/clients/${client.id}/statement`);
   };
 
   return (
@@ -101,11 +108,23 @@ const ClientDetails = (props) => {
               `${phone}`
             )}
           </p>
+          <p>
+            <strong>Unit rate: </strong>
+            {isEditing ? (
+              <input
+                type="number"
+                value={rate}
+                onChange={(e) => setRate(+e.target.value)}
+              />
+            ) : (
+              `${rate}`
+            )}
+          </p>
         </div>
       </li>
       <li className={classes.item}>
         <p>
-          <strong>Registered office:</strong>
+          <strong>Registered office: </strong>
           {isEditing ? (
             <input
               type="text"
@@ -117,7 +136,7 @@ const ClientDetails = (props) => {
           )}
         </p>
         <p>
-          <strong>Tax number:</strong>
+          <strong>Tax number: </strong>
           {isEditing ? (
             <input
               type="text"
@@ -158,7 +177,7 @@ const ClientDetails = (props) => {
           )}
         </p>
         <p>
-          <strong>Bank:</strong>{' '}
+          <strong>Bank: </strong>
           {isEditing ? (
             <input
               type="text"
@@ -172,19 +191,7 @@ const ClientDetails = (props) => {
       </li>
       <li className={classes.item}>
         <p>
-          <strong>Negotiated rate:</strong>{' '}
-          {isEditing ? (
-            <input
-              type="number"
-              value={rate}
-              onChange={(e) => setRate(e.target.value)}
-            />
-          ) : (
-            `${rate}`
-          )}
-        </p>
-        <p>
-          <strong>Notes:</strong>{' '}
+          <strong>Notes: </strong>
           {isEditing ? (
             <textarea
               rows="5"
@@ -202,6 +209,9 @@ const ClientDetails = (props) => {
       </Button>
       <Button className={classes.btn} onClick={removeHandler}>
         {isEditing ? 'Cancel' : 'Remove'}
+      </Button>
+      <Button className={classes.btn} onClick={ontoStatement}>
+        Client statement
       </Button>
     </ul>
   );

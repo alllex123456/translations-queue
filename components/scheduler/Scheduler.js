@@ -16,6 +16,7 @@ const Profile = (props) => {
   const [isFetching, setIsFetching] = useState(false);
 
   const [isRemoving, setIsRemoving] = useState(false);
+
   const override = css`
     position: absolute;
     left: 35rem;
@@ -28,7 +29,7 @@ const Profile = (props) => {
       method: 'POST',
       body: JSON.stringify({
         client: newOrder.client,
-        pages: newOrder.pages,
+        count: newOrder.count,
         received: newOrder.received,
         deadline: newOrder.deadline,
       }),
@@ -41,8 +42,17 @@ const Profile = (props) => {
       });
   };
 
-  const completeOrderHandler = (id) => {
+  const completeOrderHandler = (id, finalCount) => {
     setIsRemoving(true);
+    fetch('/api/orders/complete-orders', {
+      method: 'POST',
+      body: JSON.stringify({
+        id: id,
+        finalCount,
+      }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+
     fetch('/api/orders/queueHandler', {
       method: 'DELETE',
       body: JSON.stringify({

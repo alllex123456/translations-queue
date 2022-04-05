@@ -1,10 +1,10 @@
-import { connectToDatabase } from '../../lib/db-utils';
+import ClientStatement from '../../../components/invoicing/ClientStatement';
 import { getSession } from 'next-auth/client';
+import { connectToDatabase } from '../../../lib/db-utils';
+import { Fragment } from 'react';
 
-import ClientDetails from '../../components/clients/ClientDetails';
-
-const ClientPage = (props) => {
-  return <ClientDetails client={props.client} />;
+const StatementPage = (props) => {
+  return <ClientStatement client={props.client} />;
 };
 
 export async function getServerSideProps(context) {
@@ -27,4 +27,4 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default ClientPage;
+export default StatementPage;

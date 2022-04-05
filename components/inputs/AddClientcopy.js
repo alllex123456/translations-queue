@@ -27,7 +27,7 @@ const AddClient = (props) => {
     const enteredEmail = emailInputRef.current.value;
     const enteredBankNumber = banknumberInputRef.current.value;
     const enteredBank = bankInputRef.current.value;
-    const enteredRate = rateInputRef.current.value;
+    const enteredRate = +rateInputRef.current.value;
     const enteredNotes = notesInputRef.current.value;
 
     setIsAdding(true);

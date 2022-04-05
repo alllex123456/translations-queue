@@ -9,6 +9,10 @@
   width: 100%;
   height: 3rem;
 }
+.list textarea {
+  font: inherit;
+  width: 100%;
+}
 
 .list a {
   color: blueviolet;
@@ -31,5 +35,5 @@
 
 .btn {
   margin-right: 1rem;
-  width: 10rem;
+  width: 13rem;
 }

@@ -8,8 +8,8 @@ const Form = (props) => {
   const deadlineInputRef = useRef();
 
   const clientNames = props.clients.map((client) => (
-    <option key={client.id} value={client.name.toLowerCase()}>
-      {client.name.toUpperCase()}
+    <option key={client.id} value={client.name}>
+      {client.name}
     </option>
   ));
 
@@ -17,17 +17,18 @@ const Form = (props) => {
     e.preventDefault();
 
     const enteredClient = clientInputRef.current.value;
-    const enteredPages = pagesInputRef.current.value;
+    const enteredPages = +pagesInputRef.current.value;
     const enteredDeadline = deadlineInputRef.current.value;
 
     const newOrder = {
       client: enteredClient,
-      pages: enteredPages,
+      count: enteredPages,
       received: new Date(),
       deadline: new Date(enteredDeadline),
     };
 
     props.onAddOrder(newOrder);
+
     clientInputRef.current.value = '';
     pagesInputRef.current.value = '';
   };
@@ -43,8 +44,16 @@ const Form = (props) => {
         </select>
       </div>
       <div className={classes.controls}>
-        <label htmlFor="pages">Est. pages:</label>
-        <input type="number" id="pages" ref={pagesInputRef} required />
+        <label htmlFor="pages">
+          Estimated workload (in thousand chars + spaces):
+        </label>
+        <input
+          type="number"
+          id="pages"
+          placeholder="e.g. 24000"
+          ref={pagesInputRef}
+          required
+        />
       </div>
       <div className={classes.controls}>
         <label htmlFor="deadline">Deadline:</label>
