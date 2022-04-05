@@ -43,7 +43,7 @@ const ClientStatement = (props) => {
         <p>Total</p>
       </li>
       {clientStatement.map((order) => (
-        <li className={classes.item}>
+        <li key={order.id} className={classes.item}>
           <p></p>
           <p>{new Date(order.received).toLocaleDateString('ro')}</p>
           <p>
