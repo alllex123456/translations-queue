@@ -1,7 +1,6 @@
 .body {
   margin: 2rem;
   display: flex;
-  flex-wrap: wrap;
   align-items: flex-start;
   gap: 3rem;
 }
@@ -9,4 +8,11 @@
 .header {
   background-color: #228be6;
   padding: 1rem 2rem;
+}
+
+@media (max-width: 900px) {
+  .body {
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
 }

@@ -9,6 +9,7 @@ export default async function handler(req, res) {
   const {
     name,
     taxNumber,
+    currency,
     registrationNumber,
     registeredOffice,
     phone,
@@ -23,6 +24,7 @@ export default async function handler(req, res) {
     id: name.replaceAll(' ', '-'),
     name,
     taxNumber,
+    currency,
     registrationNumber,
     registeredOffice,
     phone,

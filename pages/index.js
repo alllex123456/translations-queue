@@ -1,7 +1,7 @@
 import { getSession } from 'next-auth/client';
 
 const HomePage = (props) => {
-  return <p>Temporary index page. Please log in.</p>;
+  return <p>index</p>;
 };
 
 export async function getServerSideProps(context) {

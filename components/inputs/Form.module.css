@@ -3,6 +3,12 @@
   padding: 1rem;
 }
 
+.flex {
+  display: flex;
+  align-items: flex-end;
+  gap: 3rem;
+}
+
 .controls {
   margin-bottom: 1rem;
 }

@@ -6,9 +6,10 @@
   padding: 1rem;
 }
 
-.flex {
+.flex-td {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .btn-complete {

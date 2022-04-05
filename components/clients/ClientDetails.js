@@ -16,6 +16,7 @@ const ClientDetails = (props) => {
   const [email, setEmail] = useState(client.email);
   const [phone, setPhone] = useState(client.phone);
   const [taxNumber, setTaxNumber] = useState(client.taxNumber);
+  const [currency, setCurrency] = useState(client.currency);
   const [registrationNumber, setRegistrationNumber] = useState(
     client.registrationNumber
   );
@@ -33,6 +34,7 @@ const ClientDetails = (props) => {
           id: client.id,
           name,
           taxNumber,
+          currency,
           registrationNumber,
           registeredOffice,
           email,
@@ -118,6 +120,21 @@ const ClientDetails = (props) => {
               />
             ) : (
               `${rate}`
+            )}
+          </p>
+          <p>
+            <strong>Currency: </strong>
+            {isEditing ? (
+              <select
+                value={currency}
+                onChange={(e) => setCurrency(e.target.value)}
+              >
+                <option value="RON">RON</option>
+                <option value="EUR">EUR</option>
+                <option value="USD">USD</option>
+              </select>
+            ) : (
+              `${currency}`
             )}
           </p>
         </div>

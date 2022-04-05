@@ -44,6 +44,9 @@ const ClientItem = (props) => {
       <Button onClick={clientPageHandler} className={classes.actions}>
         View client sheet
       </Button>
+      <Button href={`/clients/${id}/statement`} className={classes.actions}>
+        View client statement
+      </Button>
     </li>
   );
 };

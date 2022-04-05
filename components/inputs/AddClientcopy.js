@@ -7,6 +7,7 @@ const AddClient = (props) => {
 
   const nameInputRef = useRef();
   const taxInputRef = useRef();
+  const currencyInputRef = useRef();
   const registrationInputRef = useRef();
   const officeInputRef = useRef();
   const phoneInputRef = useRef();
@@ -21,6 +22,7 @@ const AddClient = (props) => {
 
     const enteredName = nameInputRef.current.value;
     const enteredTax = taxInputRef.current.value;
+    const enteredCurrency = currencyInputRef.current.value;
     const enteredRegistration = registrationInputRef.current.value;
     const enteredOffice = officeInputRef.current.value;
     const enteredPhone = phoneInputRef.current.value;
@@ -36,6 +38,7 @@ const AddClient = (props) => {
       body: JSON.stringify({
         name: enteredName.toUpperCase(),
         taxNumber: enteredTax,
+        currency: enteredCurrency,
         registrationNumber: enteredRegistration,
         registeredOffice: enteredOffice,
         phone: enteredPhone,
@@ -75,6 +78,14 @@ const AddClient = (props) => {
           <div className={classes.control}>
             <label htmlFor="registration">Company registration number:</label>
             <input type="text" id="registration" ref={registrationInputRef} />
+          </div>
+          <div className={classes.control}>
+            <label htmlFor="currency">Currency:</label>
+            <select type="text" id="currency" ref={currencyInputRef}>
+              <option value="RON">RON</option>
+              <option value="EUR">EUR</option>
+              <option value="USD">USD</option>
+            </select>
           </div>
         </div>
 

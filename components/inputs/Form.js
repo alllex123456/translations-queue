@@ -1,8 +1,9 @@
 import classes from './Form.module.css';
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 const Form = (props) => {
+  const [rate, setRate] = useState(0);
   const clientInputRef = useRef();
   const pagesInputRef = useRef();
   const deadlineInputRef = useRef();
@@ -13,6 +14,11 @@ const Form = (props) => {
     </option>
   ));
 
+  const rates = props.clients.map((client) => ({
+    name: client.name,
+    rate: client.rate,
+  }));
+
   const submitHandler = (e) => {
     e.preventDefault();
 
@@ -22,6 +28,7 @@ const Form = (props) => {
 
     const newOrder = {
       client: enteredClient,
+      rate: +rate,
       count: enteredPages,
       received: new Date(),
       deadline: new Date(enteredDeadline),
@@ -38,22 +45,44 @@ const Form = (props) => {
       <p className={classes.title}>Add new order</p>
       <div className={classes.controls}>
         <label htmlFor="client">Client:</label>
-        <select id="client" ref={clientInputRef} required>
+        <select
+          id="client"
+          ref={clientInputRef}
+          onChange={(e) =>
+            setRate(
+              rates[rates.findIndex((client) => client.name === e.target.value)]
+                .rate
+            )
+          }
+          required
+        >
           <option>select &darr;</option>
           {clientNames}
         </select>
       </div>
-      <div className={classes.controls}>
-        <label htmlFor="pages">
-          Estimated workload (in thousand chars + spaces):
-        </label>
-        <input
-          type="number"
-          id="pages"
-          placeholder="e.g. 24000"
-          ref={pagesInputRef}
-          required
-        />
+      <div className={`${classes.controls} ${classes.flex}`}>
+        <div>
+          <label htmlFor="pages">
+            Estimated workload <br /> (in thousand chars + spaces):
+          </label>
+          <input
+            type="number"
+            id="pages"
+            placeholder="e.g. 24000"
+            ref={pagesInputRef}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="rate">Rate:</label>
+          <input
+            type="number"
+            id="rate"
+            value={rate}
+            onChange={(e) => setRate(e.target.value)}
+            required
+          />
+        </div>
       </div>
       <div className={classes.controls}>
         <label htmlFor="deadline">Deadline:</label>

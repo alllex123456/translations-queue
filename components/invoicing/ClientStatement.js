@@ -1,9 +1,9 @@
 import classes from './ClientStatement.module.css';
 import { useEffect, useState } from 'react';
-import { Fragment } from 'react/cjs/react.production.min';
 
 const ClientStatement = (props) => {
-  const { name } = props.client;
+  const { name, currency } = props.client;
+
   const [clientStatements, setClientStatements] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -31,6 +31,9 @@ const ClientStatement = (props) => {
   const totalWorkload = clientStatement
     .map((order) => order.count)
     .reduce((acc, val) => acc + val, 0);
+  const totalUnitPrices = clientStatement
+    .map((order) => (order.rate * (order.count / 2000)).toFixed())
+    .reduce((acc, val) => +acc + +val, 0);
 
   return (
     <ul>
@@ -50,10 +53,19 @@ const ClientStatement = (props) => {
             {order.count} chars ({(order.count / 2000).toFixed(1)} pg.)
           </p>
           <p>{order.rate}</p>
-          <p>{(order.count / 2000).toFixed(1) * order.rate} RON</p>
+          <p>
+            {(order.count / 2000).toFixed(1) * order.rate} {currency}
+          </p>
         </li>
       ))}
-      <li>{totalWorkload}</li>
+      <li>
+        <p className={classes.totals}>
+          Total units: {(totalWorkload / 2000).toFixed()}
+        </p>
+        <p className={classes.totals}>
+          Total price: {totalUnitPrices} {currency}
+        </p>
+      </li>
     </ul>
   );
 };

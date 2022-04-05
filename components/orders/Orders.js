@@ -9,6 +9,7 @@ const Orders = (props) => {
         <tr>
           <td>Client</td>
           <td>Estimated workload</td>
+          <td>Rate</td>
           <td>Date received</td>
           <td>Deadline</td>
         </tr>
@@ -18,11 +19,13 @@ const Orders = (props) => {
           <OrderItem
             key={order.id}
             id={order.id}
+            rate={order.rate}
             client={order.client}
             received={order.received}
             deadline={order.deadline}
             count={order.count}
             onCompleteOrder={props.onCompleteOrder}
+            onRemoveOrder={props.onRemoveOrder}
           />
         ))}
       </tbody>

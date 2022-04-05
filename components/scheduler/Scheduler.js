@@ -8,14 +8,13 @@ import { css } from '@emotion/react';
 
 import Orders from '../orders/Orders';
 import Form from '../inputs/Form';
-import AddClient from '../inputs/AddClient';
 
 const Profile = (props) => {
   const [orders, setOrders] = useState(props.orders);
 
   const [isFetching, setIsFetching] = useState(false);
 
-  const [isRemoving, setIsRemoving] = useState(false);
+  const [isCompleting, setIsCompleting] = useState(false);
 
   const override = css`
     position: absolute;
@@ -29,6 +28,7 @@ const Profile = (props) => {
       method: 'POST',
       body: JSON.stringify({
         client: newOrder.client,
+        rate: newOrder.rate,
         count: newOrder.count,
         received: newOrder.received,
         deadline: newOrder.deadline,
@@ -42,13 +42,14 @@ const Profile = (props) => {
       });
   };
 
-  const completeOrderHandler = (id, finalCount) => {
-    setIsRemoving(true);
+  const completeOrderHandler = (id, finalCount, rate) => {
+    setIsCompleting(true);
     fetch('/api/orders/complete-orders', {
       method: 'POST',
       body: JSON.stringify({
         id: id,
         finalCount,
+        rate,
       }),
       headers: { 'Content-Type': 'application/json' },
     });
@@ -63,25 +64,45 @@ const Profile = (props) => {
       .then((res) => res.json())
       .then((data) => {
         setOrders(data.message);
-        setIsRemoving(false);
+        setIsCompleting(false);
+      });
+  };
+
+  const removeOrderHandler = (id) => {
+    fetch('/api/orders/queueHandler', {
+      method: 'DELETE',
+      body: JSON.stringify({
+        id: id,
+      }),
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setOrders(data.message);
+        setIsCompleting(false);
       });
   };
 
   return (
     <Fragment>
       <Orders
-        isRemoving={isRemoving}
+        isCompleting={isCompleting}
         orders={orders}
         onCompleteOrder={completeOrderHandler}
+        onRemoveOrder={removeOrderHandler}
       />
-      <ClipLoader css={override} loading={isRemoving} size={30} color="white" />
+      <ClipLoader
+        css={override}
+        loading={isCompleting}
+        size={30}
+        color="white"
+      />
       <div className={classes['form-group']}>
         <Form
           clients={props.clients}
           onAddOrder={addOrderHandler}
           isFetching={isFetching}
         />
-        {/* <AddClient /> */}
       </div>
     </Fragment>
   );
