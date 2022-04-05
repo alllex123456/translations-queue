@@ -1,6 +1,5 @@
 import { connectToDatabase } from '../../../lib/db-utils';
 import { getSession } from 'next-auth/client';
-import { getClient } from '../../../lib/db-utils';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return;
@@ -34,7 +33,7 @@ export default async function handler(req, res) {
     updatedInvoicing.push({
       ...completedOrder,
       count: req.body.finalCount,
-      rate: currentClient.rate,
+      rate: req.body.finalRate,
     });
 
     const updateMongo = await connect
