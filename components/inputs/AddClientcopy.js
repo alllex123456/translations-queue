@@ -36,6 +36,7 @@ const AddClient = (props) => {
     const response = await fetch('/api/clients/new-client', {
       method: 'POST',
       body: JSON.stringify({
+        id: enteredName.replaceAll(' ', '-'),
         name: enteredName.toUpperCase(),
         taxNumber: enteredTax,
         currency: enteredCurrency,

@@ -7,6 +7,7 @@ export default async function handler(req, res) {
   const authenticatedUser = session.user.email;
 
   const {
+    id,
     name,
     taxNumber,
     currency,
@@ -20,9 +21,8 @@ export default async function handler(req, res) {
     notes,
   } = req.body;
 
-  const clientId = name.replaceAll(' ', '-');
   const newClient = {
-    id: new Date().toISOString(),
+    id,
     name,
     taxNumber,
     currency,
