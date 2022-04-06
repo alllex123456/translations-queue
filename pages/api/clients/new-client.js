@@ -22,7 +22,7 @@ export default async function handler(req, res) {
 
   const clientId = name.replaceAll(' ', '-');
   const newClient = {
-    id: clientId,
+    id: new Date().toISOString(),
     name,
     taxNumber,
     currency,
