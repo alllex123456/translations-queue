@@ -52,7 +52,6 @@ export default async function handler(req, res) {
       { email: authenticatedUser },
       { $set: { clients: userClients } }
     );
-    if (!res.status.ok) throw new Error('no json');
     res.status(201).json({ message: newClient.name });
     client.close();
   } catch (error) {
