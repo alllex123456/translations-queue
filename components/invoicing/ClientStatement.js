@@ -54,7 +54,7 @@ const ClientStatement = (props) => {
           </p>
           <p>{order.rate}</p>
           <p>
-            {(order.count / 2000).toFixed() * order.rate} {currency}
+            {(order.count / 2000).toFixed(1) * order.rate} {currency}
           </p>
         </li>
       ))}
