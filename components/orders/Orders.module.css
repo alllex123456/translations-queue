@@ -5,6 +5,7 @@
   font-size: 1.6rem;
   border-collapse: collapse;
   align-self: flex-start;
+  table-layout: fixed;
   flex: 1 1 68%;
 }
 

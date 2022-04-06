@@ -22,7 +22,7 @@ export default async function handler(req, res) {
     const user = await db
       .collection('users')
       .findOne({ email: authenticatedUser });
-    const userClients = user.clients;
+    const userClients = user.clients.sort((a, b) => (a.name > b.name ? 1 : -1));
     res.status(201).json({ message: userClients });
     client.close();
   } catch (error) {

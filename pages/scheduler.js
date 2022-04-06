@@ -18,7 +18,7 @@ export async function getServerSideProps(context) {
   const orders = mongoUser.orders
     .map((order) => ({ id: order.id, ...order }))
     .sort((a, b) => (a.deadline > b.deadline ? 1 : -1));
-  const clients = mongoUser.clients;
+  const clients = mongoUser.clients.sort((a, b) => (a.name > b.name ? 1 : -1));
 
   return {
     props: {

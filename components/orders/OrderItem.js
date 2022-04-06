@@ -1,17 +1,11 @@
 import classes from './OrderItem.module.css';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
 const OrderItem = (props) => {
   const { id, client, rate, received, deadline, count } = props;
   const [isEditing, setIsEditing] = useState(false);
   const [isEditingFinalCount, setIsEditingFinalCount] = useState(false);
-  const formatDeadline = `${new Date(deadline).toLocaleDateString('ro', {
-    year: 'numeric',
-    month: 'numeric',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  })} `;
+
   const formattedReceivedDate = new Date(received).toLocaleDateString('ro');
 
   const [clientName, setClientName] = useState(client);
