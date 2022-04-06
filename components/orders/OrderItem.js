@@ -5,7 +5,7 @@ const OrderItem = (props) => {
   const { id, client, rate, received, deadline, count } = props;
   const [isEditing, setIsEditing] = useState(false);
   const [isEditingFinalCount, setIsEditingFinalCount] = useState(false);
-  const formattedDeadline = `${new Date(deadline).toLocaleDateString('ro', {
+  const formatDeadline = `${new Date(deadline).toLocaleDateString('ro', {
     year: 'numeric',
     month: 'numeric',
     day: 'numeric',
@@ -17,7 +17,18 @@ const OrderItem = (props) => {
   const [clientName, setClientName] = useState(client);
   const [finalRate, setFinalRate] = useState(rate);
   const [finalCount, setFinalCount] = useState(count);
-  const [finalDeadline, setFinalDeadline] = useState(formattedDeadline);
+  const [finalDeadline, setFinalDeadline] = useState(formatDeadline);
+
+  const formattedFinalDeadline = `${new Date(finalDeadline).toLocaleDateString(
+    'ro',
+    {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    }
+  )} `;
 
   const completeHandler = () => {
     setIsEditingFinalCount((previous) => !previous);
@@ -33,6 +44,9 @@ const OrderItem = (props) => {
 
   const editHandler = () => {
     setIsEditing((previous) => !previous);
+
+    if (isEditing) {
+    }
   };
 
   return (
@@ -76,10 +90,10 @@ const OrderItem = (props) => {
           <input
             type="datetime-local"
             value={finalDeadline}
-            onChange={(e) => setFinalDeadline(+e.target.value)}
+            onChange={(e) => setFinalDeadline(e.target.value)}
           />
         ) : (
-          `${finalDeadline}`
+          `${formattedFinalDeadline}`
         )}
       </td>
       <td rowSpan="2" className={classes['flex-td']}>

@@ -90,7 +90,6 @@ const Form = (props) => {
           type="datetime-local"
           id="deadline"
           ref={deadlineInputRef}
-          placeholder="dd-mm-yyyy"
           required
         />
       </div>
