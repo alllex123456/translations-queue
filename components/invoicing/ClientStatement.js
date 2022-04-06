@@ -29,7 +29,7 @@ const ClientStatement = (props) => {
   }
 
   const totalWorkload = clientStatement
-    .map((order) => order.count)
+    .map((order) => +order.count)
     .reduce((acc, val) => acc + val, 0);
   const totalUnitPrices = clientStatement
     .map((order) => (order.rate * (order.count / 2000)).toFixed())
@@ -54,7 +54,7 @@ const ClientStatement = (props) => {
           </p>
           <p>{order.rate}</p>
           <p>
-            {(order.count / 2000).toFixed(1) * order.rate} {currency}
+            {(order.count / 2000).toFixed() * order.rate} {currency}
           </p>
         </li>
       ))}
