@@ -42,6 +42,25 @@ const Profile = (props) => {
       });
   };
 
+  const editOrderHandler = (orderData) => {
+    fetch('/api/orders/edit-orders', {
+      method: 'POST',
+      body: JSON.stringify({
+        id: orderData.id,
+        client: orderData.client,
+        count: orderData.count,
+        rate: orderData.rate,
+        received: orderData.received,
+        deadline: orderData.deadline,
+      }),
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setOrders(data.message);
+      });
+  };
+
   const completeOrderHandler = (id, finalCount, finalRate) => {
     setIsCompleting(true);
     fetch('/api/orders/complete-orders', {
@@ -90,6 +109,7 @@ const Profile = (props) => {
         orders={orders}
         onCompleteOrder={completeOrderHandler}
         onRemoveOrder={removeOrderHandler}
+        onEditOrder={editOrderHandler}
       />
       <ClipLoader
         css={override}

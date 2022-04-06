@@ -26,6 +26,7 @@ const Orders = (props) => {
             count={order.count}
             onCompleteOrder={props.onCompleteOrder}
             onRemoveOrder={props.onRemoveOrder}
+            onEditOrder={props.onEditOrder}
           />
         ))}
       </tbody>

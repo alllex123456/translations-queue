@@ -17,7 +17,7 @@ const OrderItem = (props) => {
   const [clientName, setClientName] = useState(client);
   const [finalRate, setFinalRate] = useState(rate);
   const [finalCount, setFinalCount] = useState(count);
-  const [finalDeadline, setFinalDeadline] = useState(formatDeadline);
+  const [finalDeadline, setFinalDeadline] = useState(deadline);
 
   const formattedFinalDeadline = `${new Date(finalDeadline).toLocaleDateString(
     'ro',
@@ -45,7 +45,17 @@ const OrderItem = (props) => {
   const editHandler = () => {
     setIsEditing((previous) => !previous);
 
+    const editedOrder = {
+      id,
+      client: clientName,
+      count: +finalCount,
+      rate: +finalRate,
+      received: new Date(received),
+      deadline: new Date(finalDeadline),
+    };
+
     if (isEditing) {
+      props.onEditOrder(editedOrder);
     }
   };
 
@@ -67,7 +77,7 @@ const OrderItem = (props) => {
           <input
             type="number"
             value={finalCount}
-            onChange={(e) => setFinalCount(+e.target.value)}
+            onChange={(e) => setFinalCount(e.target.value)}
           />
         ) : (
           `${finalCount}`
@@ -78,7 +88,7 @@ const OrderItem = (props) => {
           <input
             type="number"
             value={finalRate}
-            onChange={(e) => setFinalRate(+e.target.value)}
+            onChange={(e) => setFinalRate(e.target.value)}
           />
         ) : (
           `${finalRate}`
