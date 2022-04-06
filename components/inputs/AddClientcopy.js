@@ -56,6 +56,7 @@ const AddClient = (props) => {
     const returnData = await response.json();
     setIsAdding(false);
     setAddedClient(returnData.message);
+    console.log(returnData.message);
   };
 
   if (addedClient) {
