@@ -67,7 +67,7 @@ const AddClient = (props) => {
       <form onSubmit={addClientHandler}>
         <div className={classes.controls}>
           <label htmlFor="name">Client legal name:</label>
-          <input type="text" id="name" ref={nameInputRef} />
+          <input type="text" id="name" ref={nameInputRef} required />
         </div>
 
         <div className={classes['controls-flex']}>
@@ -81,7 +81,7 @@ const AddClient = (props) => {
           </div>
           <div className={classes.control}>
             <label htmlFor="currency">Currency:</label>
-            <select type="text" id="currency" ref={currencyInputRef}>
+            <select type="text" id="currency" ref={currencyInputRef} required>
               <option value="RON">RON</option>
               <option value="EUR">EUR</option>
               <option value="USD">USD</option>
@@ -111,7 +111,7 @@ const AddClient = (props) => {
           </div>
           <div className={classes.control}>
             <label htmlFor="rate">Rate/2,000 chars w/ spaces:</label>
-            <input type="number" id="rate" ref={rateInputRef} />
+            <input type="number" id="rate" ref={rateInputRef} required />
           </div>
         </div>
 
