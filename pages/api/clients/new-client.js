@@ -20,8 +20,9 @@ export default async function handler(req, res) {
     notes,
   } = req.body;
 
+  const clientId = name.replaceAll(' ', '-');
   const newClient = {
-    // id: name.replaceAll(' ', '-'),
+    id: clientId,
     name,
     taxNumber,
     currency,
