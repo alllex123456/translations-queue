@@ -42,14 +42,14 @@ const Profile = (props) => {
       });
   };
 
-  const completeOrderHandler = (id, finalCount, rate) => {
+  const completeOrderHandler = (id, finalCount, finalRate) => {
     setIsCompleting(true);
     fetch('/api/orders/complete-orders', {
       method: 'POST',
       body: JSON.stringify({
         id: id,
-        finalCount,
-        rate,
+        finalCount: finalCount,
+        finalRate: finalRate,
       }),
       headers: { 'Content-Type': 'application/json' },
     });

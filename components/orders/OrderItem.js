@@ -4,6 +4,7 @@ import { useState, useRef } from 'react';
 const OrderItem = (props) => {
   const { id, client, rate, received, deadline, count } = props;
   const [isEditing, setIsEditing] = useState(false);
+  const [isEditingFinalCount, setIsEditingFinalCount] = useState(false);
   const formattedDeadline = `${new Date(deadline).toLocaleDateString('ro', {
     year: 'numeric',
     month: 'numeric',
@@ -19,7 +20,11 @@ const OrderItem = (props) => {
   const [finalDeadline, setFinalDeadline] = useState(formattedDeadline);
 
   const completeHandler = () => {
-    props.onCompleteOrder(id, finalCount, finalRate);
+    setIsEditingFinalCount((previous) => !previous);
+
+    if (isEditingFinalCount) {
+      props.onCompleteOrder(id, finalCount, finalRate);
+    }
   };
 
   const removeHandler = () => {
@@ -44,7 +49,7 @@ const OrderItem = (props) => {
         )}
       </td>
       <td>
-        {isEditing ? (
+        {isEditing || isEditingFinalCount ? (
           <input
             type="number"
             value={finalCount}
