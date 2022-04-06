@@ -9,7 +9,7 @@ const ClientStatement = (props) => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch('/api/invoicing/get-invoices')
+    fetch('/api/invoicing/get-statements')
       .then((res) => res.json())
       .then((data) => {
         setClientStatements(data.message);
