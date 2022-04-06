@@ -48,7 +48,10 @@ const AddClient = (props) => {
         rate: enteredRate,
         notes: enteredNotes,
       }),
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
     });
     const returnData = await response.json();
     setIsAdding(false);
