@@ -52,11 +52,14 @@ export default async function handler(req, res) {
       { email: authenticatedUser },
       { $set: { clients: userClients } }
     );
+    if (!res.status.ok) throw new Error('no json');
     res.status(201).json({ message: newClient.name });
     client.close();
   } catch (error) {
     res.status(500).json({
-      message: 'Database contacted, but could not connect register the data',
+      message:
+        error.message ||
+        'Database contacted, but could not connect register the data',
     });
     client.close();
   }
