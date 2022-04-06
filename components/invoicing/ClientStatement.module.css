@@ -1,34 +1,26 @@
-.item,
-.header {
-  display: flex;
-  gap: 2rem;
-  justify-content: space-between;
-}
+.table {
+  margin-top: 5rem;
+  /* table-layout: fixed; */
+  width: 110rem;
 
-.item p:first-child,
-.header h3 {
-  flex: 1 1 25rem;
-}
-
-.header {
-  font-size: 1.8rem;
-  min-width: 100rem;
-  border-bottom: 3px solid #333;
-}
-
-.item {
-  min-width: 100rem;
   font-size: 1.6rem;
-  border-bottom: 1px solid #333;
 }
 
-.item *,
-.header * {
+.table thead {
   text-align: left;
-  flex: 1 1 20rem;
+  height: 5rem;
 }
 
-.totals {
+.table th {
+  border-bottom: 2px solid #333;
+}
+
+.client {
   font-size: 2rem;
+  width: 30rem;
+}
+.totals {
+  padding-top: 2rem;
+  font-size: 1.8rem;
   font-weight: 500;
 }
