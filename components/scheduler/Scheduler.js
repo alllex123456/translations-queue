@@ -71,7 +71,11 @@ const Profile = (props) => {
         finalRate: finalRate,
       }),
       headers: { 'Content-Type': 'application/json' },
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.message);
+      });
 
     fetch('/api/orders/queueHandler', {
       method: 'DELETE',
