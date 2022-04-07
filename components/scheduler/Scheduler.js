@@ -75,7 +75,10 @@ const Profile = (props) => {
     })
       .then((res) => res.json())
       .then((data) => console.log(data))
-      .catch((error) => alert(error.message));
+      .catch((error) => {
+        alert(error.message);
+        return;
+      });
 
     fetch('/api/orders/queueHandler', {
       method: 'DELETE',
