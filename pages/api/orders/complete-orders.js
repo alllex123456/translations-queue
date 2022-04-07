@@ -50,7 +50,9 @@ export default async function handler(req, res) {
     connect.close();
   } catch (error) {
     res.status(500).json({
-      message: error.message || 'Could not update the database',
+      message:
+        error.message ||
+        'The order could not be added to Client Statement! Please retry or contact the developer.',
     });
     connect.close();
   }

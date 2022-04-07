@@ -58,7 +58,8 @@ const Profile = (props) => {
       .then((res) => res.json())
       .then((data) => {
         setOrders(data.message);
-      });
+      })
+      .catch((error) => alert(error.message));
   };
 
   const completeOrderHandler = (id, finalCount, finalRate) => {
@@ -71,7 +72,10 @@ const Profile = (props) => {
         finalRate: finalRate,
       }),
       headers: { 'Content-Type': 'application/json' },
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((error) => alert(error.message));
 
     fetch('/api/orders/queueHandler', {
       method: 'DELETE',
@@ -84,7 +88,8 @@ const Profile = (props) => {
       .then((data) => {
         setOrders(data.message);
         setIsCompleting(false);
-      });
+      })
+      .catch((error) => alert(error.message));
   };
 
   const removeOrderHandler = (id) => {
@@ -99,7 +104,8 @@ const Profile = (props) => {
       .then((data) => {
         setOrders(data.message);
         setIsCompleting(false);
-      });
+      })
+      .catch((error) => alert(error.message));
   };
 
   return (
