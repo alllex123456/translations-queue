@@ -2,7 +2,7 @@ import classes from './OrderItem.module.css';
 import { useState } from 'react';
 
 const OrderItem = (props) => {
-  const { id, client, rate, received, deadline, count } = props;
+  const { id, client, rate, received, deadline, count, notes } = props;
   const [isEditing, setIsEditing] = useState(false);
   const [isEditingFinalCount, setIsEditingFinalCount] = useState(false);
 
@@ -12,6 +12,7 @@ const OrderItem = (props) => {
   const [finalRate, setFinalRate] = useState(rate);
   const [finalCount, setFinalCount] = useState(count);
   const [finalDeadline, setFinalDeadline] = useState(deadline);
+  const [updatedNotes, setUpdatedNotes] = useState(notes);
 
   const formattedFinalDeadline = `${new Date(finalDeadline).toLocaleDateString(
     'ro',
@@ -98,6 +99,16 @@ const OrderItem = (props) => {
           />
         ) : (
           `${formattedFinalDeadline}`
+        )}
+      </td>
+      <td>
+        {isEditing ? (
+          <textarea
+            value={updatedNotes}
+            onChange={(e) => setUpdatedNotes(e.target.value)}
+          ></textarea>
+        ) : (
+          `${updatedNotes}`
         )}
       </td>
       <td rowSpan="2" className={classes['flex-td']}>

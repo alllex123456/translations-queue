@@ -36,6 +36,12 @@
   width: 100%;
 }
 
+.controls textarea {
+  font: inherit;
+  font-size: 1.6rem;
+  width: 100%;
+}
+
 .btn {
   cursor: pointer;
   border: none;
