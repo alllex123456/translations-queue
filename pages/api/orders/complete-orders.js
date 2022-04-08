@@ -51,7 +51,7 @@ export default async function handler(req, res) {
   } catch (error) {
     res.status(401).json({
       message:
-        error.message &&
+        error.message ||
         'The order could not be added to Client Statement! Please retry or contact the developer.',
     });
     connect.close();

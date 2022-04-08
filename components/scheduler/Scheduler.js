@@ -75,8 +75,13 @@ const Profile = (props) => {
       }),
       headers: { 'Content-Type': 'application/json' },
     })
-      .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then((res) => {
+        if (res.status !== 200) {
+          throw new Error(res.message);
+        }
+        return res.json();
+      })
+      .then((data) => console.log(data.message))
       .catch((error) => {
         alert(error.message);
         return;
