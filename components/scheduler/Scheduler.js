@@ -32,6 +32,7 @@ const Profile = (props) => {
         count: newOrder.count,
         received: newOrder.received,
         deadline: newOrder.deadline,
+        notes: newOrder.notes,
       }),
       headers: { 'Content-Type': 'application/json' },
     })
@@ -52,6 +53,7 @@ const Profile = (props) => {
         rate: orderData.rate,
         received: orderData.received,
         deadline: orderData.deadline,
+        notes: orderData.notes,
       }),
       headers: { 'Content-Type': 'application/json' },
     })

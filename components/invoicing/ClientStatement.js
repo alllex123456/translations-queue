@@ -5,6 +5,7 @@ import StatementItem from './StatementItem';
 const ClientStatement = (props) => {
   const { name, currency } = props.client;
   const [selectedItems, setSelectedItems] = useState([]);
+  const [highlighted, setHighlighted] = useState([]);
 
   const [clientStatements, setClientStatements] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -23,20 +24,30 @@ const ClientStatement = (props) => {
     (client) => client.client === name
   );
 
+  const highlightHandler = (id) => {
+    const highlightedList = [...highlighted];
+    clientStatement.map((order) => {
+      if (order.id === id) {
+        highlightedList = [...highlighted, id];
+      } else {
+        highlightedList.splice(highlighted.indexOf(id), 1);
+      }
+      setHighlighted(highlightedList);
+    });
+  };
+
   const selectAllHandler = (e) => {
     if (e.target.checked) {
-      setSelectedItems(clientStatement.map((order) => order.id));
+      setSelectedItems(clientStatement.map((order) => order));
     } else {
       setSelectedItems([]);
     }
   };
 
-  console.log(selectedItems);
-
   const handleSelectedItems = (e) => {
     let updatedList = [...selectedItems];
     if (e.target.checked) {
-      updatedList = [...selectedItems, e.target.value];
+      updatedList = [...selectedItems, JSON.parse(e.target.value)];
     } else {
       updatedList.splice(selectedItems.indexOf(e.target.value), 1);
     }
@@ -57,10 +68,16 @@ const ClientStatement = (props) => {
     .map((order) => (order.rate * (order.count / 2000)).toFixed())
     .reduce((acc, val) => +acc + +val, 0);
 
+  const totalToInvoice = selectedItems
+    .map((order) => (order.rate * (order.count / 2000)).toFixed())
+    .reduce((acc, val) => +acc + +val, 0);
+
   return (
     <Fragment>
       <table className={classes.table}>
         <thead className={classes.header}>
+          <p className={classes.select}>Select</p>
+          <p className={classes.select}>&nbsp;&nbsp;all</p>
           <tr>
             <th className={classes.client}>
               <input type="checkbox" onChange={selectAllHandler} />
@@ -73,13 +90,13 @@ const ClientStatement = (props) => {
           </tr>
         </thead>
         <tbody>
-          {clientStatement.map((order, index) => (
+          {clientStatement.map((order) => (
             <StatementItem
               key={order.id}
               order={order}
               currency={currency}
-              index={index}
               onSelectItems={handleSelectedItems}
+              onHighlight={highlightHandler}
             />
           ))}
         </tbody>
@@ -97,8 +114,9 @@ const ClientStatement = (props) => {
         </tfoot>
       </table>
 
-      <div>
+      <div className={classes.summary}>
         <h3>Uninvoiced orders</h3>
+        <p className={classes.toInvoice}>To invoice: {totalToInvoice}</p>
       </div>
     </Fragment>
   );

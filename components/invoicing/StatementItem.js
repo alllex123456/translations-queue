@@ -1,21 +1,23 @@
 import classes from './StatementItem.module.css';
 
 const StatementItem = (props) => {
-  const { order, currency, index } = props;
+  const { order, currency } = props;
 
   const handleOnChange = (e) => {
     props.onSelectItems(e);
+    props.onHighlight(JSON.parse(e.target.value).id);
   };
 
   return (
-    <tr key={index} className={classes.item}>
+    <tr className={classes.item}>
       <td>
         <input
-          className={classes.check}
+          id="select"
           type="checkbox"
-          value={order.id}
+          value={JSON.stringify(order)}
           onChange={handleOnChange}
         />
+        <span>Select</span>
       </td>
       <td>{new Date(order.received).toLocaleDateString('ro')}</td>
       <td>

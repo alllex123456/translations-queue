@@ -4,7 +4,7 @@ import { getSession } from 'next-auth/client';
 export default async function handler(req, res) {
   const session = await getSession({ req });
   const authenticatedUser = session.user.email;
-  const { client, count, rate, received, deadline } = req.body;
+  const { client, count, rate, received, deadline, notes } = req.body;
   const newOrder = {
     id: new Date().toISOString(),
     client,
@@ -12,6 +12,7 @@ export default async function handler(req, res) {
     rate,
     received,
     deadline,
+    notes,
   };
 
   let connect;
