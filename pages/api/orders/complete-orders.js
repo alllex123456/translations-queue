@@ -26,9 +26,9 @@ export default async function handler(req, res) {
       .findOne({ email: authenticatedUser });
     const updatedInvoicing = user.invoicing;
     const completedOrder = user.orders.find((order) => order.id === clientId);
-    const currentClient = user.clients.find(
-      (client) => client.name === completedOrder.client
-    );
+    // const currentClient = user.clients.find(
+    //   (client) => client.name === completedOrder.client
+    // );
 
     updatedInvoicing.push({
       ...completedOrder,
