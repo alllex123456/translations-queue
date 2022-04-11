@@ -28,9 +28,6 @@ export default async function handler(req, res) {
     const completedOrder = await user.orders.find(
       (order) => order.id === clientId
     );
-    // const currentClient = user.clients.find(
-    //   (client) => client.name === completedOrder.client
-    // );
 
     updatedInvoicing.push({
       ...completedOrder,
