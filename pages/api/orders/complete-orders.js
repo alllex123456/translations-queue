@@ -24,8 +24,10 @@ export default async function handler(req, res) {
       .db()
       .collection('users')
       .findOne({ email: authenticatedUser });
-    const updatedInvoicing = user.invoicing;
-    const completedOrder = user.orders.find((order) => order.id === clientId);
+    const updatedInvoicing = await user.invoicing;
+    const completedOrder = await user.orders.find(
+      (order) => order.id === clientId
+    );
     // const currentClient = user.clients.find(
     //   (client) => client.name === completedOrder.client
     // );
