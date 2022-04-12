@@ -1,6 +1,7 @@
 import classes from './ClientStatement.module.css';
 import { useEffect, useState, Fragment } from 'react';
 import StatementItem from './StatementItem';
+import Button from '../layout/Button';
 
 const ClientStatement = (props) => {
   const { name, currency } = props.client;
@@ -54,6 +55,20 @@ const ClientStatement = (props) => {
     setSelectedItems(updatedList);
   };
 
+  const removeHandler = () => {
+    setSelectedItems([]);
+
+    const ids = selectedItems.map((item) => item.id);
+    console.log(ids);
+    fetch('/api/invoicing/remove-statements', {
+      method: 'DELETE',
+      body: JSON.stringify({ ids }),
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data.message));
+  };
+
   if (isLoading) {
     return <p>Loading...</p>;
   }
@@ -76,8 +91,6 @@ const ClientStatement = (props) => {
     <Fragment>
       <table className={classes.table}>
         <thead className={classes.header}>
-          <p className={classes.select}>Select</p>
-          <p className={classes.select}>&nbsp;&nbsp;all</p>
           <tr>
             <th className={classes.client}>
               <input type="checkbox" onChange={selectAllHandler} />
@@ -117,6 +130,10 @@ const ClientStatement = (props) => {
       <div className={classes.summary}>
         <h3>Uninvoiced orders</h3>
         <p className={classes.toInvoice}>To invoice: {totalToInvoice}</p>
+        <div className={classes.actions}>
+          <Button>Invoice Selected</Button>
+          <Button onClick={removeHandler}>Remove Selected</Button>
+        </div>
       </div>
     </Fragment>
   );

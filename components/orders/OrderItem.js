@@ -29,7 +29,16 @@ const OrderItem = (props) => {
     setIsEditingFinalCount((previous) => !previous);
 
     if (isEditingFinalCount) {
-      props.onCompleteOrder(id, finalCount, finalRate);
+      const editedOrder = {
+        id,
+        client: clientName,
+        count: +finalCount,
+        rate: +finalRate,
+        received: new Date(received),
+        deadline: new Date(finalDeadline),
+        notes: updatedNotes,
+      };
+      props.onCompleteOrder(editedOrder);
     }
   };
 
@@ -47,6 +56,7 @@ const OrderItem = (props) => {
       rate: +finalRate,
       received: new Date(received),
       deadline: new Date(finalDeadline),
+      notes: updatedNotes,
     };
 
     if (isEditing) {

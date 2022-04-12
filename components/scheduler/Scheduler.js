@@ -64,14 +64,18 @@ const Profile = (props) => {
       .catch((error) => alert(error.message));
   };
 
-  const completeOrderHandler = (id, finalCount, finalRate) => {
+  const completeOrderHandler = (orderData) => {
     setIsCompleting(true);
     fetch('/api/orders/complete-orders', {
       method: 'POST',
       body: JSON.stringify({
-        id: id,
-        finalCount: finalCount,
-        finalRate: finalRate,
+        id: orderData.id,
+        client: orderData.client,
+        count: orderData.count,
+        rate: orderData.rate,
+        received: orderData.received,
+        deadline: orderData.deadline,
+        notes: orderData.notes,
       }),
       headers: { 'Content-Type': 'application/json' },
     })
@@ -90,7 +94,7 @@ const Profile = (props) => {
     fetch('/api/orders/queueHandler', {
       method: 'DELETE',
       body: JSON.stringify({
-        id: id,
+        id: orderData.id,
       }),
       headers: { 'Content-Type': 'application/json' },
     })

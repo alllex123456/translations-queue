@@ -2,11 +2,9 @@ import { connectToDatabase } from '../../../lib/db-utils';
 import { getSession } from 'next-auth/client';
 
 export default async function handler(req, res) {
-  if (req.method !== 'POST') return;
-
+  if (req.method !== 'DELETE') return;
   const session = await getSession({ req });
   const authenticatedUser = session.user.email;
-  const { id, client, count, rate, received, deadline, notes } = req.body;
 
   let connect;
 
@@ -25,30 +23,27 @@ export default async function handler(req, res) {
       .collection('users')
       .findOne({ email: authenticatedUser });
 
-    const updateMongo = await connect
+    const updatedStatements = user.invoicing.filter(
+      (statement, index) => statement.id !== req.body.ids[index]
+    );
+    console.log(updatedStatements);
+    await connect
       .db()
       .collection('users')
       .updateOne(
         { email: authenticatedUser },
         {
           $set: {
-            invoicing: [
-              ...user.invoicing,
-              { id, client, count, rate, received, deadline, notes },
-            ],
+            invoicing: updatedStatements,
           },
         }
       );
 
-    res.status(200).json({
-      message: 'Invoicing list successfully updated',
-    });
+    res.status(201).json({ message: 'Orders successfully removed' });
     connect.close();
   } catch (error) {
-    res.status(401).json({
-      message:
-        error.message ||
-        'The order could not be added to Client Statement! Please retry or contact the developer.',
+    res.status(500).json({
+      message: error.message || 'Could not delete the data',
     });
     connect.close();
   }
