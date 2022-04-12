@@ -5,6 +5,7 @@ import Button from '../layout/Button';
 
 const ClientStatement = (props) => {
   const { name, currency } = props.client;
+
   const [selectedItems, setSelectedItems] = useState([]);
   const [highlighted, setHighlighted] = useState([]);
 
@@ -59,14 +60,14 @@ const ClientStatement = (props) => {
     setSelectedItems([]);
 
     const ids = selectedItems.map((item) => item.id);
-    console.log(ids);
+
     fetch('/api/invoicing/remove-statements', {
       method: 'DELETE',
       body: JSON.stringify({ ids }),
       headers: { 'Content-Type': 'application/json' },
     })
       .then((res) => res.json())
-      .then((data) => console.log(data.message));
+      .then((data) => setClientStatements(data.message));
   };
 
   if (isLoading) {

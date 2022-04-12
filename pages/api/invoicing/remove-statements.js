@@ -39,7 +39,7 @@ export default async function handler(req, res) {
         }
       );
 
-    res.status(201).json({ message: 'Orders successfully removed' });
+    res.status(201).json({ message: updatedStatements });
     connect.close();
   } catch (error) {
     res.status(500).json({

@@ -1,4 +1,5 @@
 import classes from './StatementItem.module.css';
+import { useState, useEffect } from 'react';
 
 const StatementItem = (props) => {
   const { order, currency } = props;
