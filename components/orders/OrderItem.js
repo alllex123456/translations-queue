@@ -11,7 +11,9 @@ const OrderItem = (props) => {
   const [clientName, setClientName] = useState(client);
   const [finalRate, setFinalRate] = useState(rate);
   const [finalCount, setFinalCount] = useState(count);
-  const [finalDeadline, setFinalDeadline] = useState(deadline);
+  const [finalDeadline, setFinalDeadline] = useState(
+    deadline.split(':00.000Z').shift()
+  );
   const [updatedNotes, setUpdatedNotes] = useState(notes);
 
   const formattedFinalDeadline = `${new Date(finalDeadline).toLocaleDateString(
@@ -48,6 +50,7 @@ const OrderItem = (props) => {
 
   const editHandler = () => {
     setIsEditing((previous) => !previous);
+    console.log(finalDeadline);
     const editedOrder = {
       id,
       client: clientName,
