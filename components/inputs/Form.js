@@ -27,7 +27,7 @@ const Form = (props) => {
     const enteredPages = +pagesInputRef.current.value;
     const enteredDeadline = deadlineInputRef.current.value;
     const enteredNotes = notesInputRef.current.value;
-
+    console.log(enteredDeadline);
     const newOrder = {
       client: enteredClient,
       rate: +rate,

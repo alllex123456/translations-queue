@@ -48,14 +48,13 @@ const OrderItem = (props) => {
 
   const editHandler = () => {
     setIsEditing((previous) => !previous);
-
     const editedOrder = {
       id,
       client: clientName,
       count: +finalCount,
       rate: +finalRate,
       received: new Date(received),
-      deadline: new Date(finalDeadline),
+      deadline: finalDeadline,
       notes: updatedNotes,
     };
 
