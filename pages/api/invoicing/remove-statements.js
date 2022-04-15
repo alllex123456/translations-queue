@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     const updatedStatements = user.invoicing.filter(
       (statement, index) => statement.id !== req.body.ids[index]
     );
-    console.log(updatedStatements);
+
     await connect
       .db()
       .collection('users')
