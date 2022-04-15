@@ -16,7 +16,7 @@ const OrderItem = (props) => {
   );
   const [updatedNotes, setUpdatedNotes] = useState(notes);
 
-  const formattedFinalDeadline = `${new Date(finalDeadline).toLocaleDateString(
+  const formattedFinalDeadline = `${new Date(deadline).toLocaleDateString(
     'ro',
     {
       year: 'numeric',
