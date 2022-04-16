@@ -4,7 +4,7 @@ import StatementItem from './StatementItem';
 import Button from '../layout/Button';
 
 const ClientStatement = (props) => {
-  const { name, currency } = props.client;
+  const { name, currency, notes } = props.client;
 
   const [selectedItems, setSelectedItems] = useState([]);
   const [highlighted, setHighlighted] = useState([]);
@@ -101,6 +101,7 @@ const ClientStatement = (props) => {
             <th>Count</th>
             <th>Unit Rate/pg.</th>
             <th>Total</th>
+            <th>Notes</th>
           </tr>
         </thead>
         <tbody>
@@ -109,6 +110,7 @@ const ClientStatement = (props) => {
               key={order.id}
               order={order}
               currency={currency}
+              notes={clientStatement[0].notes}
               onSelectItems={handleSelectedItems}
               onHighlight={highlightHandler}
             />

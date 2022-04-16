@@ -1,6 +1,6 @@
 .table {
   margin-top: 5rem;
-  /* table-layout: fixed; */
+  table-layout: fixed;
   width: 110rem;
 
   font-size: 1.6rem;
@@ -16,7 +16,7 @@
 }
 
 .client {
-  font-size: 2rem;
+  font-size: 1.6rem;
   width: 30rem;
 }
 

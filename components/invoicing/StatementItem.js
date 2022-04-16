@@ -2,7 +2,7 @@ import classes from './StatementItem.module.css';
 import { useState, useEffect } from 'react';
 
 const StatementItem = (props) => {
-  const { order, currency } = props;
+  const { order, currency, notes } = props;
 
   const handleOnChange = (e) => {
     props.onSelectItems(e);
@@ -28,6 +28,7 @@ const StatementItem = (props) => {
       <td>
         {(order.count / 2000).toFixed(2) * order.rate} {currency}
       </td>
+      <td className={classes.notes}>{notes}</td>
     </tr>
   );
 };
