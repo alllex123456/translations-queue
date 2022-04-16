@@ -24,7 +24,7 @@ export default async function handler(req, res) {
       .findOne({ email: authenticatedUser });
 
     const updatedStatements = user.invoicing.filter(
-      (statement, index) => statement.id !== req.body.ids[index]
+      (item) => req.body.ids.indexOf(item.id) === -1
     );
 
     await connect
