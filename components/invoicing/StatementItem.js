@@ -22,11 +22,11 @@ const StatementItem = (props) => {
       </td>
       <td>{new Date(order.received).toLocaleDateString('ro')}</td>
       <td>
-        {order.count} chars ({(order.count / 2000).toFixed(1)} pg.)
+        {order.count} chars ({(order.count / 2000).toFixed(2)} pg.)
       </td>
       <td>{order.rate}</td>
       <td>
-        {(order.count / 2000).toFixed(1) * order.rate} {currency}
+        {(order.count / 2000).toFixed(2) * order.rate} {currency}
       </td>
     </tr>
   );
