@@ -28,7 +28,7 @@ const StatementItem = (props) => {
       <td>
         {(order.count / 2000).toFixed(2) * order.rate} {currency}
       </td>
-      <td className={classes.notes}>{notes}</td>
+      <td className={classes.notes}>{order.notes}</td>
     </tr>
   );
 };

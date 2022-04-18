@@ -77,6 +77,7 @@ const ClientStatement = (props) => {
     return <p>No orders for this client</p>;
   }
 
+  console.log(clientStatement);
   const totalWorkload = clientStatement
     .map((order) => +order.count)
     .reduce((acc, val) => acc + val, 0);
@@ -110,7 +111,6 @@ const ClientStatement = (props) => {
               key={order.id}
               order={order}
               currency={currency}
-              notes={clientStatement[0].notes}
               onSelectItems={handleSelectedItems}
               onHighlight={highlightHandler}
             />
