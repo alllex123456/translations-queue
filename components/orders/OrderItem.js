@@ -1,5 +1,6 @@
 import classes from './OrderItem.module.css';
 import { useState } from 'react';
+import Link from 'next/link';
 
 const OrderItem = (props) => {
   const { id, client, rate, received, deadline, count, notes } = props;
@@ -66,6 +67,8 @@ const OrderItem = (props) => {
     }
   };
 
+  const clientPath = `/clients/${client.replaceAll(' ', '-')}/statement`;
+
   return (
     <tr className={classes.row}>
       <td>
@@ -76,7 +79,9 @@ const OrderItem = (props) => {
             onChange={(e) => setClientName(e.target.value)}
           />
         ) : (
-          `${clientName}`
+          <Link href={clientPath}>
+            <a className={classes.clientLink}> {clientName}</a>
+          </Link>
         )}
       </td>
       <td>
@@ -113,7 +118,7 @@ const OrderItem = (props) => {
           `${formattedFinalDeadline}`
         )}
       </td>
-      <td>
+      <td className={classes.notes}>
         {isEditing ? (
           <textarea
             value={updatedNotes}

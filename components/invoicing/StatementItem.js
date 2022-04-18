@@ -9,6 +9,8 @@ const StatementItem = (props) => {
     props.onHighlight(JSON.parse(e.target.value).id);
   };
 
+  const orderPrice = ((order.count / 2000) * order.rate).toFixed(2);
+
   return (
     <tr className={classes.item}>
       <td>
@@ -25,9 +27,7 @@ const StatementItem = (props) => {
         {order.count} chars ({(order.count / 2000).toFixed(2)} pg.)
       </td>
       <td>{order.rate}</td>
-      <td>
-        {(order.count / 2000).toFixed(2) * order.rate} {currency}
-      </td>
+      <td>{orderPrice}</td>
       <td className={classes.notes}>{order.notes}</td>
     </tr>
   );
