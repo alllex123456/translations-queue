@@ -67,7 +67,8 @@ const OrderItem = (props) => {
     }
   };
 
-  const clientId = client.replaceAll(' ', '-');
+  const clientId = client.replace(/ /g, '-');
+
   const clientPath = `/clients/${clientId}/statement`;
 
   return (
