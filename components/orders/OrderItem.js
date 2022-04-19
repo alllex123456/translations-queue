@@ -6,27 +6,22 @@ const OrderItem = (props) => {
   const { id, client, rate, received, deadline, count, notes } = props;
   const [isEditing, setIsEditing] = useState(false);
   const [isEditingFinalCount, setIsEditingFinalCount] = useState(false);
-
+  console.log(deadline);
   const formattedReceivedDate = new Date(received).toLocaleDateString('ro');
 
   const [clientName, setClientName] = useState(client);
   const [finalRate, setFinalRate] = useState(rate);
   const [finalCount, setFinalCount] = useState(count);
-  const [finalDeadline, setFinalDeadline] = useState(
-    deadline.split(':00.000Z').shift()
-  );
+  const [finalDeadline, setFinalDeadline] = useState(new Date(deadline));
   const [updatedNotes, setUpdatedNotes] = useState(notes);
 
-  const formattedFinalDeadline = `${new Date(deadline).toLocaleDateString(
-    'ro',
-    {
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    }
-  )} `;
+  const formattedFinalDeadline = new Date(deadline).toLocaleDateString('ro', {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
 
   const completeHandler = () => {
     setIsEditingFinalCount((previous) => !previous);
@@ -58,7 +53,7 @@ const OrderItem = (props) => {
       count: +finalCount,
       rate: +finalRate,
       received: new Date(received),
-      deadline: finalDeadline,
+      deadline: new Date(finalDeadline),
       notes: updatedNotes,
     };
 
@@ -68,7 +63,6 @@ const OrderItem = (props) => {
   };
 
   const clientId = client.replace(/ /g, '-');
-
   const clientPath = `/clients/${clientId}/statement`;
 
   return (
