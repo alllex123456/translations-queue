@@ -67,7 +67,7 @@ const OrderItem = (props) => {
     }
   };
 
-  const clientPath = `/clients/${client.replaceAll(' ', '-')}/statement`;
+  const clientPath = `/clients/${clientName.replaceAll(' ', '-')}/statement`;
 
   return (
     <tr className={classes.row}>
