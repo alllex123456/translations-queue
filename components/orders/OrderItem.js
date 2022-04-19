@@ -66,8 +66,8 @@ const OrderItem = (props) => {
       props.onEditOrder(editedOrder);
     }
   };
-
-  const clientPath = `/clients/${clientName.replaceAll(' ', '-')}/statement`;
+  let clientPath;
+  if (client) clientPath = `/clients/${client.replaceAll(' ', '-')}/statement`;
 
   return (
     <tr className={classes.row}>
