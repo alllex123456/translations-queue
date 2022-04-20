@@ -5,7 +5,10 @@ const Button = (props) => {
   if (props.href) {
     return (
       <Link href={props.href}>
-        <a className={`${classes.button} ${props.className}`}>
+        <a
+          className={`${classes.button} ${props.className}`}
+          target={props.target}
+        >
           {props.children}
         </a>
       </Link>

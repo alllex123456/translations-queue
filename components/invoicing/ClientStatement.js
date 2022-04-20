@@ -77,7 +77,6 @@ const ClientStatement = (props) => {
     return <p>No orders for this client</p>;
   }
 
-  console.log(clientStatement);
   const totalWorkload = clientStatement
     .map((order) => +order.count)
     .reduce((acc, val) => acc + val, 0);
@@ -136,6 +135,12 @@ const ClientStatement = (props) => {
         <div className={classes.actions}>
           <Button>Invoice Selected</Button>
           <Button onClick={removeHandler}>Remove Selected</Button>
+          <Button
+            href={`/clients/${name.replace(/ /g, '-')}/statement/generate`}
+            target="_blank"
+          >
+            Get link
+          </Button>
         </div>
       </div>
     </Fragment>

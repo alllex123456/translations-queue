@@ -1,6 +1,6 @@
-import ClientStatement from '../../../components/invoicing/ClientStatement';
+import ClientStatement from '../../../../components/invoicing/ClientStatement';
 import { getSession } from 'next-auth/client';
-import { connectToDatabase } from '../../../lib/db-utils';
+import { connectToDatabase } from '../../../../lib/db-utils';
 import { Fragment } from 'react';
 
 const StatementPage = (props) => {
