@@ -5,7 +5,7 @@ import Button from '../layout/Button';
 export default function GeneratePDF(props) {
   function generate() {
     const doc = new jsPDF();
-    doc.text(`Total: ${props.total} ${props.currency}`, 15, 15);
+    doc.text(`Total: ${props.total} ${props.currency}`, 15, 10);
 
     doc.autoTable({
       head: [['Data primirii', 'Volum (ccs)', 'Tarif/pg.', 'Total', 'Note']],
