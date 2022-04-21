@@ -2,6 +2,7 @@ import classes from './ClientStatement.module.css';
 import { useEffect, useState, Fragment } from 'react';
 import StatementItem from './StatementItem';
 import Button from '../layout/Button';
+import GeneratePDF from '../PDF/GeneratePDF';
 
 const ClientStatement = (props) => {
   const { name, currency, notes } = props.client;
@@ -25,6 +26,8 @@ const ClientStatement = (props) => {
   const clientStatement = clientStatements.filter(
     (client) => client.client === name
   );
+
+  console.log(clientStatement);
 
   const highlightHandler = (id) => {
     const highlightedList = [...highlighted];
@@ -135,12 +138,11 @@ const ClientStatement = (props) => {
         <div className={classes.actions}>
           <Button>Invoice Selected</Button>
           <Button onClick={removeHandler}>Remove Selected</Button>
-          <Button
-            href={`/clients/${name.replace(/ /g, '-')}/statement/generate`}
-            target="_blank"
-          >
-            Get link
-          </Button>
+          <GeneratePDF
+            client={clientStatement}
+            total={totalUnitPrices}
+            currency={currency}
+          />
         </div>
       </div>
     </Fragment>
