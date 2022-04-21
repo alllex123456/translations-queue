@@ -6,7 +6,7 @@ import GeneratePDF from '../PDF/GeneratePDF';
 
 const ClientStatement = (props) => {
   const { name, currency, notes } = props.client;
-
+  const [confirmRemove, setConfirmRemove] = useState(false);
   const [selectedItems, setSelectedItems] = useState([]);
   const [highlighted, setHighlighted] = useState([]);
 
@@ -26,8 +26,6 @@ const ClientStatement = (props) => {
   const clientStatement = clientStatements.filter(
     (client) => client.client === name
   );
-
-  console.log(clientStatement);
 
   const highlightHandler = (id) => {
     const highlightedList = [...highlighted];
@@ -60,17 +58,23 @@ const ClientStatement = (props) => {
   };
 
   const removeHandler = () => {
-    setSelectedItems([]);
+    const confirmation = confirm(
+      'The removal is permanent. Are your sure you want to remove the selected items?'
+    );
 
-    const ids = selectedItems.map((item) => item.id);
+    if (confirmation) {
+      setSelectedItems([]);
 
-    fetch('/api/invoicing/remove-statements', {
-      method: 'DELETE',
-      body: JSON.stringify({ ids }),
-      headers: { 'Content-Type': 'application/json' },
-    })
-      .then((res) => res.json())
-      .then((data) => setClientStatements(data.message));
+      const ids = selectedItems.map((item) => item.id);
+
+      fetch('/api/invoicing/remove-statements', {
+        method: 'DELETE',
+        body: JSON.stringify({ ids }),
+        headers: { 'Content-Type': 'application/json' },
+      })
+        .then((res) => res.json())
+        .then((data) => setClientStatements(data.message));
+    }
   };
 
   if (isLoading) {
