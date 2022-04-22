@@ -25,7 +25,7 @@ const StatisticsMain = ({ invoicingList, clients }) => {
         <h3>Work statistics</h3>
         <ul>
           {sortedClients.map((client) => (
-            <li>
+            <li key={Math.random()}>
               <h3>{client.map((item) => item.client)}</h3>
               <p>
                 Total:{' '}
