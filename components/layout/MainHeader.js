@@ -21,7 +21,7 @@ const MainHeader = (props) => {
           <p className={classes.user}>Logged in as: {session.user.email}</p>
         )}
         {!session && <Link href="/">Log in</Link>}
-        {/* {session && <Link href="/">Records</Link>} */}
+        {session && <Link href="/statistics">Statistics</Link>}
         {session && <Link href="/clients">Clients</Link>}
         {session && <Link href="/scheduler">Scheduler</Link>}
         {/* {session && <Link href="/invoicing">Invoicing</Link>} */}
