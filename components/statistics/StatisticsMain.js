@@ -6,10 +6,10 @@ const StatisticsMain = ({ invoicingList, clients }) => {
     .map((order) => (order.count * order.rate) / 2000)
     .reduce((acc, val) => acc + val, 0);
 
-  const getCurrency = (clientName) => {
-    const client = clients.find((item) => item.name === clientName);
-    return client.currency;
-  };
+  // const getCurrency = (clientName) => {
+  //   const client = clients.find((item) => item.name === clientName);
+  //   return client.currency;
+  // };
 
   const getCountCurrentDay = () => {
     const currentDate = new Date();
@@ -40,7 +40,7 @@ const StatisticsMain = ({ invoicingList, clients }) => {
           <p className={classes.completed}>Completed today:</p>
           <p>{getCountCurrentDay()} characters</p>
           <p>{getCountCurrentDay() / 2000} pages</p>
-          <h2>Amount to invoice: {totals.toFixed()} RON</h2>
+          <h2>Amount to invoice: {totals.toFixed()}</h2>
         </div>
         <h3>Totals per client</h3>
         <ul>
@@ -52,7 +52,7 @@ const StatisticsMain = ({ invoicingList, clients }) => {
                   .map((item) => (item.count * item.rate) / 2000)
                   .reduce((acc, val) => acc + val, 0)
                   .toFixed()}{' '}
-                {getCurrency(item[0])}
+                {/* {getCurrency(item[0])} */}
                 {}
               </p>
             </li>
@@ -68,7 +68,7 @@ const StatisticsMain = ({ invoicingList, clients }) => {
               <p>{item.client}</p>
               <p>
                 Value: {((item.count * item.rate) / 2000).toFixed()}{' '}
-                {getCurrency(item.client)}
+                {/* {getCurrency(item.client)} */}
               </p>
             </li>
           ))}
