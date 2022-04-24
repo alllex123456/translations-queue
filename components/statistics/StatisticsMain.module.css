@@ -1,0 +1,23 @@
+.totals {
+  width: 30%;
+}
+
+.name {
+  font-weight: 500;
+}
+
+.amount {
+  margin-bottom: 2rem;
+}
+
+.recent {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.recent p {
+  flex-basis: 100%;
+  flex: 1;
+  min-width: 20rem;
+}

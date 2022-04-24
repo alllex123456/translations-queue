@@ -6,7 +6,6 @@ import GeneratePDF from '../PDF/GeneratePDF';
 
 const ClientStatement = (props) => {
   const { name, currency, notes } = props.client;
-  const [confirmRemove, setConfirmRemove] = useState(false);
   const [selectedItems, setSelectedItems] = useState([]);
   const [highlighted, setHighlighted] = useState([]);
 

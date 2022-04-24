@@ -70,6 +70,7 @@ const Profile = (props) => {
       method: 'POST',
       body: JSON.stringify({
         id: orderData.id,
+        timeCompleted: new Date(),
         client: orderData.client,
         count: orderData.count,
         rate: orderData.rate,

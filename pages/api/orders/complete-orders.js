@@ -6,7 +6,8 @@ export default async function handler(req, res) {
 
   const session = await getSession({ req });
   const authenticatedUser = session.user.email;
-  const { id, client, count, rate, received, deadline, notes } = req.body;
+  const { id, client, count, rate, received, deadline, notes, timeCompleted } =
+    req.body;
 
   let connect;
 
@@ -34,7 +35,16 @@ export default async function handler(req, res) {
           $set: {
             invoicing: [
               ...user.invoicing,
-              { id, client, count, rate, received, deadline, notes },
+              {
+                id,
+                client,
+                count,
+                rate,
+                received,
+                deadline,
+                notes,
+                timeCompleted,
+              },
             ],
           },
         }
