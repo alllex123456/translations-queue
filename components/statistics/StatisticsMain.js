@@ -36,11 +36,16 @@ const StatisticsMain = ({ invoicingList, clients }) => {
   return (
     <Fragment>
       <div className={classes.totals}>
-        <h3>Not invoiced: {totals.toFixed()} RON</h3>
+        <div className={classes.summary}>
+          <p className={classes.completed}>Completed today:</p>
+          <p>{getCountCurrentDay()} characters</p>
+          <p>{getCountCurrentDay() / 2000} pages</p>
+          <h2>Amount to invoice: {totals.toFixed()} RON</h2>
+        </div>
         <h3>Totals per client</h3>
         <ul>
           {Object.entries(grouped).map((item) => (
-            <li key={Math.random()}>
+            <li className={classes.totalsClient} key={Math.random()}>
               <p className={classes.name}>{item[0]}</p>
               <p className={classes.amount}>
                 {item[1]
@@ -61,12 +66,14 @@ const StatisticsMain = ({ invoicingList, clients }) => {
           {invoicingList.map((item) => (
             <li className={classes.recent} key={Math.random()}>
               <p>{item.client}</p>
-              <p>Value: {(item.count * item.rate) / 2000}</p>
+              <p>
+                Value: {((item.count * item.rate) / 2000).toFixed()}{' '}
+                {getCurrency(item.client)}
+              </p>
             </li>
           ))}
         </ul>
       </div>
-      <div>{getCountCurrentDay()} characters completed today</div>
     </Fragment>
   );
 };

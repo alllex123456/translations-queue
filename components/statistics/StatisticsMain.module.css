@@ -1,5 +1,16 @@
 .totals {
   width: 30%;
+  margin-left: 10rem;
+  font-size: 1.4rem;
+}
+
+.summary {
+  margin-bottom: 5rem;
+}
+
+.totalsClient {
+  border-bottom: 1px solid #999;
+  border-top: 1px solid #999;
 }
 
 .name {
@@ -14,10 +25,17 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+
+  border-bottom: 1px solid #999;
 }
 
 .recent p {
   flex-basis: 100%;
   flex: 1;
   min-width: 20rem;
+}
+
+.completed {
+  border-bottom: 1px solid #333;
+  font-weight: 500;
 }
