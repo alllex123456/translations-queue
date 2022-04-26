@@ -17,8 +17,8 @@ export async function getServerSideProps(context) {
   const client = await connectToDatabase();
   const collection = client.db().collection('users');
   const mongoUser = await collection.findOne({ email: authenticatedUser });
-  const invoicingList = mongoUser.invoicing;
-  const clients = mongoUser.clients;
+  const invoicingList = mongoUser.invoicing ? mongoUser.invoicing : [];
+  const clients = mongoUser.clients ? mongoUser.clients : [];
 
   return {
     props: {

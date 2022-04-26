@@ -22,7 +22,7 @@ const ClientStatement = (props) => {
       });
   }, []);
 
-  const clientStatement = clientStatements.filter(
+  const clientStatement = clientStatements?.filter(
     (client) => client.client === name
   );
 
