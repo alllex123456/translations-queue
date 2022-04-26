@@ -38,8 +38,8 @@ const StatisticsMain = ({ invoicingList, clients }) => {
       <div className={classes.totals}>
         <div className={classes.summary}>
           <p className={classes.completed}>Completed today:</p>
-          <p>{getCountCurrentDay()} characters</p>
-          <p>{getCountCurrentDay() / 2000} pages</p>
+          <p>{getCountCurrentDay().toLocaleString('ro')} characters</p>
+          <p>{(getCountCurrentDay() / 2000).toFixed()} pages</p>
           <h2>Amount to invoice: {totals.toFixed()}</h2>
         </div>
         <h3>Totals per client</h3>

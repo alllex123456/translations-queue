@@ -1,8 +1,12 @@
 import classes from './Form.module.css';
 
 import { useRef, useState } from 'react';
+import { useContext } from 'react';
+import UserContext from '../../store/user-ctx';
 
 const Form = (props) => {
+  const { language } = useContext(UserContext);
+
   const [rate, setRate] = useState(0);
   const clientInputRef = useRef();
   const pagesInputRef = useRef();
@@ -43,6 +47,72 @@ const Form = (props) => {
     pagesInputRef.current.value = '';
     notesInputRef.current.value = '';
   };
+
+  if (language === 'ro') {
+    return (
+      <form className={classes.form} onSubmit={submitHandler}>
+        <p className={classes.title}>Adaugă comandă nouă</p>
+        <div className={classes.controls}>
+          <label htmlFor="client">Client:</label>
+          <select
+            id="client"
+            ref={clientInputRef}
+            onChange={(e) =>
+              setRate(
+                rates[
+                  rates.findIndex((client) => client.name === e.target.value)
+                ].rate
+              )
+            }
+            required
+          >
+            <option>select &darr;</option>
+            {clientNames}
+          </select>
+        </div>
+        <div className={`${classes.controls} ${classes.flex}`}>
+          <div>
+            <label htmlFor="pages">
+              Volum estimat <br /> (în mii caractere + spații):
+            </label>
+            <input
+              type="number"
+              id="pages"
+              placeholder="e.g. 24000"
+              ref={pagesInputRef}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="rate">Tarif:</label>
+            <input
+              type="number"
+              id="rate"
+              value={rate}
+              onChange={(e) => setRate(e.target.value)}
+              required
+            />
+          </div>
+        </div>
+        <div className={classes.controls}>
+          <label htmlFor="deadline">Termen:</label>
+          <input
+            type="datetime-local"
+            id="deadline"
+            ref={deadlineInputRef}
+            required
+          />
+        </div>
+        <div className={classes.controls}>
+          <label htmlFor="notes">Note (opțional):</label>
+          <textarea rows="5" id="notes" ref={notesInputRef}></textarea>
+        </div>
+        <button className={classes.btn}>
+          {props.isFetching ? 'Se încarcă...' : 'Înregistrează comanda'}
+        </button>
+      </form>
+    );
+  }
 
   return (
     <form className={classes.form} onSubmit={submitHandler}>
