@@ -1,5 +1,5 @@
 .form {
-  background-color: #e3fafc;
+  background-color: rgba(56, 174, 204, 0.1);
   padding: 1rem;
 
   flex: 1 1 40rem;
@@ -55,11 +55,14 @@
   border: none;
   padding: 1rem;
   width: 100%;
-  background-color: #228be6;
-  color: #fff;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #022f40;
   font-weight: 600;
+  transition: all 0.2s;
 }
 
 .btn:hover {
-  filter: brightness(120%);
+  color: #fff;
+  background-color: #022f40;
 }

@@ -15,7 +15,16 @@ const MainHeader = (props) => {
 
   return (
     <header className={classes.header}>
-      <h1>Translations Scheduler</h1>
+      <h1>
+        {router.pathname === '/auth' && 'Authentication'}
+        {router.pathname === '/profile' && 'User profile'}
+        {router.pathname === '/scheduler' && 'Scheduler'}
+        {router.pathname === '/clients' && 'Clients'}
+        {router.pathname === '/statistics' && 'Statistics'}
+        {router.pathname === '/clients/[clientId]' && router.query.clientId}
+        {router.pathname === '/clients/[clientId]/statement' &&
+          'Statement - ' + router.query.clientId}
+      </h1>
       <div className={classes.navigation}>
         {session && (
           <p className={classes.user}>Logged in as: {session.user.email}</p>

@@ -1,16 +1,19 @@
 .button {
   font: inherit;
   cursor: pointer;
-  background: #228be6;
+  background: #046e8f;
   border: none;
   padding: 1rem;
   color: #fff;
   text-align: center;
   font-weight: 500;
   font-size: 1.2rem;
+  border: 1px solid transparent;
   transition: all 0.3s;
 }
 
 .button:hover {
-  filter: brightness(120%);
+  background: transparent;
+  border: 1px solid #046e8f;
+  color: #000;
 }

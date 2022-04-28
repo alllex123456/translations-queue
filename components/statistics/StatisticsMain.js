@@ -4,12 +4,16 @@ import classes from './StatisticsMain.module.css';
 const StatisticsMain = ({ invoicingList, clients }) => {
   const totals = invoicingList
     .map((order) => (order.count * order.rate) / 2000)
-    .reduce((acc, val) => acc + val, 0);
+    .reduce((acc, val) => acc + val, 0)
+    .toFixed();
 
-  const getCurrency = (clientName) => {
-    const client = clients.find((item) => item.name === clientName);
-    return client.currency;
-  };
+  // const getCurrency = (clientName) => {
+  //   const client = clients.find((item) =>
+  //     item.name === clientName;
+  //   );
+
+  //   return client.currency;
+  // };
 
   const getCountCurrentDay = () => {
     const currentDate = new Date();
@@ -40,7 +44,7 @@ const StatisticsMain = ({ invoicingList, clients }) => {
           <p className={classes.completed}>Completed today:</p>
           <p>{getCountCurrentDay().toLocaleString('ro')} characters</p>
           <p>{(getCountCurrentDay() / 2000).toFixed()} pages</p>
-          <h2>Amount to invoice: {totals.toFixed()}</h2>
+          <h2>Amount to invoice: {totals}</h2>
         </div>
         <h3>Totals per client</h3>
         <ul>
@@ -51,9 +55,8 @@ const StatisticsMain = ({ invoicingList, clients }) => {
                 {item[1]
                   .map((item) => (item.count * item.rate) / 2000)
                   .reduce((acc, val) => acc + val, 0)
-                  .toFixed()}{' '}
-                {getCurrency(item[0])}
-                {}
+                  .toFixed()}
+                {/* {getCurrency(item[0])} */}
               </p>
             </li>
           ))}
@@ -68,7 +71,7 @@ const StatisticsMain = ({ invoicingList, clients }) => {
               <p>{item.client}</p>
               <p>
                 Value: {((item.count * item.rate) / 2000).toFixed()}{' '}
-                {getCurrency(item.client)}
+                {/* {getCurrency(item.client)} */}
               </p>
             </li>
           ))}

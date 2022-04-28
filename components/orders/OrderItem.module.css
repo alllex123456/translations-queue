@@ -19,14 +19,16 @@
 
 .btn-complete {
   cursor: pointer;
-  background: #1864ab;
-  border: none;
-  color: #fff;
+  background: #fff;
+  border: 1px solid #022f40;
+  color: #000;
   font-weight: 700;
+  transition: all 0.2s;
 }
 
 .btn-complete:hover {
-  filter: brightness(120%);
+  color: #fff;
+  background: #022f40;
 }
 
 .row .notes {

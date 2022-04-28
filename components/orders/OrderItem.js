@@ -6,7 +6,7 @@ const OrderItem = (props) => {
   const { id, client, rate, received, deadline, count, notes } = props;
   const [isEditing, setIsEditing] = useState(false);
   const [isEditingFinalCount, setIsEditingFinalCount] = useState(false);
-  console.log(deadline);
+
   const formattedReceivedDate = new Date(received).toLocaleDateString('ro');
 
   const [clientName, setClientName] = useState(client);
