@@ -25,6 +25,7 @@ export default async function handler(req, res) {
       orders: [],
       clients: [],
       invoicing: [],
+      userInfo: {},
     });
     res
       .status(201)
