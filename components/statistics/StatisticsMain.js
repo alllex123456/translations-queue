@@ -37,6 +37,10 @@ const StatisticsMain = ({ invoicingList, clients }) => {
     return r;
   }, Object.create(null));
 
+  const sortedRecentOrders = invoicingList.sort((a, b) =>
+    a.timeCompleted > b.timeCompleted ? -1 : 1
+  );
+
   return (
     <Fragment>
       <div className={classes.totals}>
@@ -66,7 +70,7 @@ const StatisticsMain = ({ invoicingList, clients }) => {
         <h3>Work statistics</h3>
         <h4>Recent completed orders</h4>
         <ul>
-          {invoicingList.map((item) => (
+          {sortedRecentOrders.map((item) => (
             <li className={classes.recent} key={Math.random()}>
               <p>{item.client}</p>
               <p>
