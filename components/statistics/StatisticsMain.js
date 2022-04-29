@@ -38,7 +38,7 @@ const StatisticsMain = ({ invoicingList, clients }) => {
   }, Object.create(null));
 
   const sortedRecentOrders = invoicingList.sort((a, b) =>
-    a.timeCompleted > b.timeCompleted ? -1 : 1
+    a.deadline > b.deadline ? -1 : 1
   );
 
   return (
