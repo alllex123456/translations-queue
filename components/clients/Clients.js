@@ -20,9 +20,9 @@ const Clients = () => {
 
   return (
     <section className={classes.register}>
-      <h2>Clients Register</h2>
+      <h2>Registrul de clienți</h2>
       <ul className={classes.list}>
-        {isLoading && <p className={classes.loading}>Loading clients...</p>}
+        {isLoading && <p className={classes.loading}>Se încarcă...</p>}
         {clients.map((client) => (
           <ClientItem
             key={client.id}

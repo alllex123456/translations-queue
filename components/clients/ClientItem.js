@@ -30,22 +30,22 @@ const ClientItem = (props) => {
     <li className={classes.item}>
       <div className={classes.name}>
         <h3>
-          Name: <strong>{name}</strong>
+          Numele: <strong>{name}</strong>
         </h3>
       </div>
       <div className={classes.group}>
-        <p>Rate: {rate}</p>
-        <p>Phone: {phone}</p>
+        <p>Tarif: {rate}</p>
+        <p>Telefon: {phone}</p>
       </div>
       <div className={classes.group}>
         <p>Email: {emailHref}</p>
-        <p>Notes: {notes}</p>
+        <p>Note: {notes}</p>
       </div>
       <Button onClick={clientPageHandler} className={classes.actions}>
-        View client sheet
+        Vezi fișa clientului
       </Button>
       <Button href={`/clients/${id}/statement`} className={classes.actions}>
-        View client statement
+        Vezi situația clientului
       </Button>
     </li>
   );

@@ -83,7 +83,7 @@ const ClientDetails = (props) => {
           <h3>{name}</h3>
         )}
         <p>
-          <strong>Contact information:</strong>
+          <strong>Informații de contact:</strong>
         </p>
         <div className="flex">
           <p>
@@ -99,7 +99,7 @@ const ClientDetails = (props) => {
             )}
           </p>
           <p>
-            <strong>Phone: </strong>
+            <strong>Telefon: </strong>
             {isEditing ? (
               <input
                 type="phone"
@@ -111,7 +111,7 @@ const ClientDetails = (props) => {
             )}
           </p>
           <p>
-            <strong>Unit rate: </strong>
+            <strong>Tarif unitar: </strong>
             {isEditing ? (
               <input
                 type="number"
@@ -123,7 +123,7 @@ const ClientDetails = (props) => {
             )}
           </p>
           <p>
-            <strong>Currency: </strong>
+            <strong>Monedă: </strong>
             {isEditing ? (
               <select
                 value={currency}
@@ -141,7 +141,7 @@ const ClientDetails = (props) => {
       </li>
       <li className={classes.item}>
         <p>
-          <strong>Registered office: </strong>
+          <strong>Sediul social: </strong>
           {isEditing ? (
             <input
               type="text"
@@ -153,7 +153,7 @@ const ClientDetails = (props) => {
           )}
         </p>
         <p>
-          <strong>Tax number: </strong>
+          <strong>Cod fiscal: </strong>
           {isEditing ? (
             <input
               type="text"
@@ -165,7 +165,7 @@ const ClientDetails = (props) => {
           )}
         </p>
         <p>
-          <strong>Company registration number: </strong>
+          <strong>Număr de înregistrare ONRC: </strong>
           {isEditing ? (
             <input
               type="text"
@@ -179,7 +179,7 @@ const ClientDetails = (props) => {
       </li>
       <li className={classes.item}>
         <p>
-          <strong>Bank data:</strong>
+          <strong>Date bancare:</strong>
         </p>
         <p>
           <strong>IBAN:</strong>
@@ -194,7 +194,7 @@ const ClientDetails = (props) => {
           )}
         </p>
         <p>
-          <strong>Bank: </strong>
+          <strong>Banca: </strong>
           {isEditing ? (
             <input
               type="text"
@@ -208,7 +208,7 @@ const ClientDetails = (props) => {
       </li>
       <li className={classes.item}>
         <p>
-          <strong>Notes: </strong>
+          <strong>Note: </strong>
           {isEditing ? (
             <textarea
               rows="5"
@@ -220,15 +220,15 @@ const ClientDetails = (props) => {
           )}
         </p>
       </li>
-      <p className={classes.actions}>Options</p>
+      <p className={classes.actions}>Opțiuni</p>
       <Button className={classes.btn} onClick={editHandler}>
-        {isEditing ? 'Save' : 'Edit'}
+        {isEditing ? 'Salvează' : 'Editează'}
       </Button>
       <Button className={classes.btn} onClick={removeHandler}>
-        {isEditing ? 'Cancel' : 'Remove'}
+        {isEditing ? 'Anulează' : 'Elimină'}
       </Button>
       <Button className={classes.btn} onClick={ontoStatement}>
-        Client statement
+        Situație
       </Button>
     </ul>
   );

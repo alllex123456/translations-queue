@@ -45,12 +45,12 @@ const StatisticsMain = ({ invoicingList, clients }) => {
     <Fragment>
       <div className={classes.totals}>
         <div className={classes.summary}>
-          <p className={classes.completed}>Completed today:</p>
-          <p>{getCountCurrentDay().toLocaleString('ro')} characters</p>
-          <p>{(getCountCurrentDay() / 2000).toFixed()} pages</p>
-          <h2>Amount to invoice: {totals}</h2>
+          <p className={classes.completed}>Finalizat astăzi:</p>
+          <p>{getCountCurrentDay().toLocaleString('ro')} caractere</p>
+          <p>{(getCountCurrentDay() / 2000).toFixed()} padini</p>
+          <h2>Sumă de facturat: {totals}</h2>
         </div>
-        <h3>Totals per client</h3>
+        <h3>Totaluri pe client</h3>
         <ul>
           {Object.entries(grouped).map((item) => (
             <li className={classes.totalsClient} key={Math.random()}>
@@ -67,14 +67,14 @@ const StatisticsMain = ({ invoicingList, clients }) => {
         </ul>
       </div>
       <div className={classes.orders}>
-        <h3>Work statistics</h3>
-        <h4>Recent completed orders</h4>
+        <h3>Statistici de lucru</h3>
+        <h4>Lucrări finalizate recent</h4>
         <ul>
           {sortedRecentOrders.map((item) => (
             <li className={classes.recent} key={Math.random()}>
               <p>{item.client}</p>
               <p>
-                Value: {((item.count * item.rate) / 2000).toFixed()}{' '}
+                Valoare: {((item.count * item.rate) / 2000).toFixed()}{' '}
                 {/* {getCurrency(item.client)} */}
               </p>
             </li>

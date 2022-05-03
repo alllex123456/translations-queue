@@ -20,7 +20,7 @@ const StatementItem = (props) => {
           value={JSON.stringify(order)}
           onChange={handleOnChange}
         />
-        <span>Select</span>
+        <span>Selectează</span>
       </td>
       <td>{new Date(order.received).toLocaleDateString('ro')}</td>
       <td>

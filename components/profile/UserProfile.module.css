@@ -17,6 +17,7 @@
 
 .businessData {
   display: flex;
+  gap: 2rem;
 }
 
 .business label {
@@ -31,5 +32,14 @@
   display: block;
   margin-bottom: 2rem;
   margin-right: 2rem;
-  width: 40rem;
+  width: 100%;
+}
+
+.actions {
+  display: flex;
+  gap: 2rem;
+}
+
+.userInfo {
+  font-size: 1.6rem;
 }

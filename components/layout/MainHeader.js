@@ -16,28 +16,30 @@ const MainHeader = (props) => {
   return (
     <header className={classes.header}>
       <h1>
-        {router.pathname === '/auth' && 'Authentication'}
-        {router.pathname === '/profile' && 'User profile'}
-        {router.pathname === '/scheduler' && 'Scheduler'}
-        {router.pathname === '/clients' && 'Clients'}
-        {router.pathname === '/statistics' && 'Statistics'}
+        {router.pathname === '/auth' && 'Autentificare'}
+        {router.pathname === '/profile' && 'Profil utilizator'}
+        {router.pathname === '/scheduler' && 'Organizator'}
+        {router.pathname === '/clients' && 'Clienți'}
+        {router.pathname === '/statistics' && 'Statistici'}
         {router.pathname === '/clients/[clientId]' && router.query.clientId}
         {router.pathname === '/clients/[clientId]/statement' &&
-          'Statement - ' + router.query.clientId}
+          'Situație - ' + router.query.clientId}
       </h1>
       <div className={classes.navigation}>
         {session && (
-          <p className={classes.user}>Logged in as: {session.user.email}</p>
+          <p className={classes.user}>
+            Utilizator autentificat: {session.user.email}
+          </p>
         )}
-        {!session && <Link href="/">Log in</Link>}
-        {session && <Link href="/statistics">Statistics</Link>}
-        {session && <Link href="/clients">Clients</Link>}
-        {session && <Link href="/scheduler">Scheduler</Link>}
+        {!session && <Link href="/">Autentificare</Link>}
+        {session && <Link href="/statistics">Statistici</Link>}
+        {session && <Link href="/clients">Clienți</Link>}
+        {session && <Link href="/scheduler">Organizator</Link>}
         {/* {session && <Link href="/invoicing">Invoicing</Link>} */}
-        {session && <Link href="/profile">User profile</Link>}
+        {session && <Link href="/profile">Profil utilizator</Link>}
         {session && !loading && (
           <button type="button" onClick={signoutHandler}>
-            Log out
+            Deconectare
           </button>
         )}
       </div>

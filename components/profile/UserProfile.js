@@ -1,24 +1,35 @@
-import { Fragment, useState, useRef } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import Modal from '../layout/Modal';
 import Button from '../layout/Button';
 import classes from './UserProfile.module.css';
 
 const UserProfile = (props) => {
   const [isEditing, setIsEditing] = useState(false);
-  const langInputRef = useRef();
-  const nameInputRef = useRef();
-  const taxNumberInputRef = useRef();
-  const regNumberInputRef = useRef();
-  const regOfficeInputRef = useRef();
+
+  const [enteredLanguage, setEnteredLanguage] = useState();
+  const [enteredName, setEnteredName] = useState();
+  const [enteredTaxNumber, setEnteredTaxNumber] = useState();
+  const [enteredRegNumber, setEnteredRegNumber] = useState();
+  const [enteredRegOffice, setEnteredRegOffice] = useState();
+  const [enteredEmail, setEnteredEmail] = useState();
+  const [enteredPhone, setEnteredPhone] = useState();
+
+  useEffect(() => {
+    fetch('/api/user/get-user')
+      .then((res) => res.json())
+      .then((data) => {
+        setEnteredLanguage(data.message.language);
+        setEnteredName(data.message.name);
+        setEnteredTaxNumber(data.message.taxNumber);
+        setEnteredRegNumber(data.message.registrationNumber);
+        setEnteredRegOffice(data.message.registeredOffice);
+        setEnteredEmail(data.message.email);
+        setEnteredPhone(data.message.phone);
+      });
+  }, []);
 
   const submitHandler = (e) => {
     e.preventDefault();
-
-    const enteredLanguage = langInputRef.current.value;
-    const enteredName = nameInputRef.current.value;
-    const enteredTaxNumber = taxNumberInputRef.current.value;
-    const enteredRegNumber = regNumberInputRef.current.value;
-    const enteredRegOffice = regOfficeInputRef.current.value;
 
     const updatedUserInfo = {
       language: enteredLanguage,
@@ -26,12 +37,24 @@ const UserProfile = (props) => {
       taxNumber: enteredTaxNumber,
       registrationNumber: enteredRegNumber,
       registeredOffice: enteredRegOffice,
+      email: enteredEmail,
+      phone: enteredPhone,
     };
-    fetch('/', {
+
+    fetch('/api/user/edit-user', {
       method: 'POST',
       body: JSON.stringify(updatedUserInfo),
       headers: { 'Content-Type': 'application/json' },
-    });
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error(res.json());
+        return res.json();
+      })
+      .then((data) => {
+        setIsEditing(false);
+        alert(`${data.message} actualizat cu succes`);
+      })
+      .catch((error) => alert(error.message));
   };
 
   if (isEditing) {
@@ -39,28 +62,77 @@ const UserProfile = (props) => {
       <Modal onClose={() => setIsEditing(false)}>
         <form onSubmit={submitHandler}>
           <div className={classes.personal}>
-            <h3>Personal Preferences</h3>
-            <label htmlFor="language">Language</label>
-            <select id="language">
-              <option value="RO">Romanian</option>
-              <option value="EN">English</option>
+            <h3>Preferințe personale</h3>
+            <label htmlFor="language">Limbă</label>
+            <select
+              id="language"
+              value={enteredLanguage}
+              onChange={(e) => setEnteredLanguage(e.target.value)}
+            >
+              <option value="RO">Română</option>
+              <option value="EN">Engleză</option>
             </select>
           </div>
           <div className={classes.business}>
-            <h3>Business Info</h3>
+            <h3>Informații juridice</h3>
             <div className={classes.businessData}>
               <div>
-                <label htmlFor="name">Corporate Name</label>
-                <input type="text" id="name" />
-                <label htmlFor="regno">Registration Number</label>
-                <input type="text" id="regno" />
+                <label htmlFor="name">Denumire firmă</label>
+                <input
+                  type="text"
+                  id="name"
+                  required
+                  value={enteredName}
+                  onChange={(e) => setEnteredName(e.target.value)}
+                />
+                <label htmlFor="regno">Număr de înregistrare</label>
+                <input
+                  type="text"
+                  id="regno"
+                  value={enteredRegNumber}
+                  onChange={(e) => setEnteredRegNumber(e.target.value)}
+                />
               </div>
               <div>
-                <label htmlFor="taxno">Tax Number</label>
-                <input type="text" id="taxno" />
-                <label htmlFor="regoff">Registered Office</label>
-                <input type="text" id="regoff" />
+                <label htmlFor="taxno">Cod fiscal</label>
+                <input
+                  type="text"
+                  id="taxno"
+                  required
+                  value={enteredTaxNumber}
+                  onChange={(e) => setEnteredTaxNumber(e.target.value)}
+                />
+                <label htmlFor="regoff">Sediul</label>
+                <input
+                  type="text"
+                  id="regoff"
+                  required
+                  value={enteredRegOffice}
+                  onChange={(e) => setEnteredRegOffice(e.target.value)}
+                />
               </div>
+              <div>
+                <label htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  value={enteredEmail}
+                  onChange={(e) => setEnteredEmail(e.target.value)}
+                />
+                <label htmlFor="phone">Telefon</label>
+                <input
+                  type="phone"
+                  id="phone"
+                  value={enteredPhone}
+                  onChange={(e) => setEnteredPhone(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className={classes.actions}>
+              <Button type="submit">Salvează</Button>
+              <Button type="button" onClick={() => setIsEditing(false)}>
+                Anulează
+              </Button>
             </div>
           </div>
         </form>
@@ -70,14 +142,18 @@ const UserProfile = (props) => {
 
   return (
     <Fragment>
-      <div>
-        <h2>User profile page</h2>
-        <Button onClick={() => setIsEditing(true)}>Edit</Button>
+      <div className={classes.userHead}>
+        <h2>Profil utilizator curent</h2>
+        <Button onClick={() => setIsEditing(true)}>Editează</Button>
       </div>
-      <div>
-        <p>Company Name</p>
-        <p>Registration number</p>
-        <p>Tax number</p>
+      <div className={classes.userInfo}>
+        <p>Limba selectată: {enteredLanguage}</p>
+        <p>Denumire firmă: {enteredName}</p>
+        <p>Număr de înregistrare: {enteredRegNumber}</p>
+        <p>Cod fiscal: {enteredTaxNumber}</p>
+        <p>Sediul: {enteredRegOffice}</p>
+        <p>Email: {enteredEmail}</p>
+        <p>Telefon: {enteredPhone}</p>
       </div>
     </Fragment>
   );

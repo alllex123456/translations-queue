@@ -33,23 +33,23 @@ const AuthenticationForm = (props) => {
       if (!response.error) router.replace('/scheduler');
       if (response.error) alert(response.error);
     } else {
-      setLoading(true);
-      const enteredCheckPassword = checkPasswordInputRef.current.value;
-      fetch('api/auth/signup', {
-        method: 'POST',
-        body: JSON.stringify({
-          email: enteredEmail,
-          password: enterePassword,
-          checkPassword: enteredCheckPassword,
-        }),
-        headers: { 'Content-Type': 'application/json' },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setIsLogin(true);
-          setLoading(false);
-          setSignedUp(data.message);
-        });
+      // // setLoading(true);
+      // // const enteredCheckPassword = checkPasswordInputRef.current.value;
+      // // fetch('api/auth/signup', {
+      // //   method: 'POST',
+      // //   body: JSON.stringify({
+      // //     email: enteredEmail,
+      // //     password: enterePassword,
+      // //     checkPassword: enteredCheckPassword,
+      // //   }),
+      // //   headers: { 'Content-Type': 'application/json' },
+      // })
+      //   .then((res) => res.json())
+      //   .then((data) => {
+      //     setIsLogin(true);
+      //     setLoading(false);
+      //     setSignedUp(data.message);
+      //   });
     }
   }
 
@@ -60,12 +60,12 @@ const AuthenticationForm = (props) => {
         <input type="email" id="email" ref={emailInputRef} />
       </div>
       <div className={classes.controls}>
-        <label htmlFor="password">Password:</label>
+        <label htmlFor="password">Parola:</label>
         <input type="password" id="password" ref={passwordInputRef} />
       </div>
       {!isLogin && (
         <div className={classes.controls}>
-          <label htmlFor="checkpassword">Re-enter password:</label>
+          <label htmlFor="checkpassword">Reintroduceți parola:</label>
           <input
             type="password"
             id="checkpassword"
@@ -74,12 +74,14 @@ const AuthenticationForm = (props) => {
         </div>
       )}
       <button className={classes.action}>
-        {isLogin ? 'Log in' : 'Sign up'}
+        {isLogin ? 'Autentificare' : 'Înregistrare cont nou'}
       </button>
       <button type="button" className={classes.toggle} onClick={toggleLogin}>
-        {isLogin ? 'or create new account' : 'or sign in with existing account'}
+        {isLogin
+          ? 'sau creați un cont nou'
+          : 'sau conectați-vă cu un cont existent'}
       </button>
-      {loading && <p className={classes.loading}>Please wait...</p>}
+      {loading && <p className={classes.loading}>Se încarcă...</p>}
       <p className={classes.loading}>{signedUp}</p>
     </form>
   );

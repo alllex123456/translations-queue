@@ -26,7 +26,7 @@ export default function GeneratePDF(props) {
   return (
     <div>
       <Button onClick={generate} type="primary">
-        Download as PDF
+        Descarcă PDF
       </Button>
     </div>
   );

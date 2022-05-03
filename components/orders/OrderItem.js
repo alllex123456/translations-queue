@@ -126,13 +126,13 @@ const OrderItem = (props) => {
       </td>
       <td rowSpan="2" className={classes['flex-td']}>
         <button className={classes['btn-complete']} onClick={completeHandler}>
-          Complete
+          Finalizează
         </button>
         <button className={classes['btn-complete']} onClick={editHandler}>
-          {isEditing ? 'Save' : 'Change'}
+          {isEditing ? 'Salvează' : 'Modifică'}
         </button>
         <button className={classes['btn-complete']} onClick={removeHandler}>
-          Remove
+          Șterge
         </button>
       </td>
     </tr>

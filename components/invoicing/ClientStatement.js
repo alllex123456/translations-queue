@@ -58,7 +58,7 @@ const ClientStatement = (props) => {
 
   const removeHandler = () => {
     const confirmation = confirm(
-      'The removal is permanent. Are your sure you want to remove the selected items?'
+      'Ștergerea este permanentă! Confirmați ștergerea articolelor selectate?'
     );
 
     if (confirmation) {
@@ -77,10 +77,10 @@ const ClientStatement = (props) => {
   };
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <h3>Se încarcă...</h3>;
   }
   if (!clientStatement) {
-    return <p>No orders for this client</p>;
+    return <h3>Nu există comenzi pentru acest client</h3>;
   }
 
   const totalWorkload = clientStatement
@@ -103,11 +103,11 @@ const ClientStatement = (props) => {
               <input type="checkbox" onChange={selectAllHandler} />
               {name}
             </th>
-            <th>Date received</th>
-            <th>Count</th>
-            <th>Unit Rate/pg.</th>
+            <th>Data primirii</th>
+            <th>Volum (2000 ccs)</th>
+            <th>Tarif/pag.</th>
             <th>Total</th>
-            <th>Notes</th>
+            <th>Note</th>
           </tr>
         </thead>
         <tbody>
@@ -124,23 +124,23 @@ const ClientStatement = (props) => {
         <tfoot>
           <tr>
             <td className={classes.totals}>
-              Total units: {(totalWorkload / 2000).toFixed()}
+              Total unități: {(totalWorkload / 2000).toFixed()}
             </td>
           </tr>
           <tr>
             <td className={classes.totals}>
-              Total price: {totalUnitPrices} {currency}
+              Valoare totală: {totalUnitPrices} {currency}
             </td>
           </tr>
         </tfoot>
       </table>
 
       <div className={classes.summary}>
-        <h3>Uninvoiced orders</h3>
-        <p className={classes.toInvoice}>To invoice: {totalToInvoice}</p>
+        <h3>Comenzi nefacturate</h3>
+        <p className={classes.toInvoice}>De facturat: {totalToInvoice}</p>
         <div className={classes.actions}>
-          <Button>Invoice Selected</Button>
-          <Button onClick={removeHandler}>Remove Selected</Button>
+          <Button>Facturează articolele selectate</Button>
+          <Button onClick={removeHandler}>Șterge articolele selectate</Button>
           <GeneratePDF
             client={clientStatement}
             total={totalUnitPrices}
