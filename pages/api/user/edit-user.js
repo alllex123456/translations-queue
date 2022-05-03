@@ -1,7 +1,7 @@
 import { connectToDatabase } from '../../../lib/db-utils';
 import { getSession } from 'next-auth/client';
 
-export default async function (req, res) {
+export default async function handler(req, res) {
   if (req.method !== 'POST') return;
 
   const session = await getSession({ req });
