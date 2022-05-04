@@ -47,7 +47,7 @@ const StatisticsMain = ({ invoicingList, clients }) => {
         <div className={classes.summary}>
           <p className={classes.completed}>Finalizat astăzi:</p>
           <p>{getCountCurrentDay().toLocaleString('ro')} caractere</p>
-          <p>{(getCountCurrentDay() / 2000).toFixed()} padini</p>
+          <p>{(getCountCurrentDay() / 2000).toFixed()} pagini</p>
           <h2>Sumă de facturat: {totals}</h2>
         </div>
         <h3>Totaluri pe client</h3>
