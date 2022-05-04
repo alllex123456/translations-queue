@@ -13,6 +13,7 @@ export default async function handler(req, res) {
     connect = await connectToDatabase();
   } catch (error) {
     res.status(500).json({ message: 'Could not connect to database' });
+    connect.close();
   }
 
   try {

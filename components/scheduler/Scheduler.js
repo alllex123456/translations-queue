@@ -92,6 +92,12 @@ const Profile = (props) => {
         return;
       });
 
+    fetch('/api/statistics/send-current-day', {
+      method: 'POST',
+      body: JSON.stringify({ count: orderData.count }),
+      headers: { 'Content-Type': 'application/json' },
+    }).catch((error) => error.message);
+
     fetch('/api/orders/queueHandler', {
       method: 'DELETE',
       body: JSON.stringify({
