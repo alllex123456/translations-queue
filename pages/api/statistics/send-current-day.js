@@ -8,6 +8,7 @@ export default async function handler(req, res) {
   const authenticatedUser = session.user.email;
 
   const receivedCount = req.body.count;
+  const { timeCompleted } = req.body;
 
   let connect;
 
@@ -24,12 +25,15 @@ export default async function handler(req, res) {
       .collection('users')
       .findOne({ email: authenticatedUser });
 
-    const currentCount = user.statistics.count;
+    const currentStatistics = user.statistics;
     let updatedCount;
-    if (currentCount) {
-      updatedCount = { count: currentCount + receivedCount };
+    if (currentStatistics.count && currentStatistics.timeCompleted) {
+      updatedCount = {
+        count: currentStatistics.count + receivedCount,
+        timeCompleted: currentStatistics + timeCompleted,
+      };
     } else {
-      updatedCount = { count: receivedCount };
+      updatedCount = { count: receivedCount, timeCompleted };
     }
 
     await connect
