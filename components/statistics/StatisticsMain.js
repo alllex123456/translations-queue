@@ -9,14 +9,7 @@ const StatisticsMain = ({ invoicingList, clients }) => {
     fetch('/api/statistics/get-current-day')
       .then((res) => res.json())
       .then((data) => {
-        if (
-          new Date(data.message.timeCompleted).getDate() !==
-          new Date().getDate()
-        ) {
-          setStatistics({ count: 0, timeCompleted: new Date() });
-        } else {
-          setStatistics(data.message);
-        }
+        setStatistics(data.message);
       });
   }, []);
 
@@ -48,8 +41,11 @@ const StatisticsMain = ({ invoicingList, clients }) => {
       <div className={classes.totals}>
         <div className={classes.summary}>
           <p className={classes.completed}>Finalizat astăzi:</p>
-          <p>{statistics.count} caractere</p>
-          <p>{(statistics.count / 2000).toFixed()} pagini</p>
+          <p>{statistics.count ? statistics.count : '...'} caractere</p>
+          <p>
+            {statistics.count ? (statistics.count / 2000).toFixed() : '...'}{' '}
+            pagini
+          </p>
           <h2>Sumă de facturat: {totals}</h2>
         </div>
         <h3>Totaluri pe client</h3>
