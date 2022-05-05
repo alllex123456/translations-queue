@@ -26,19 +26,15 @@ export default async function handler(req, res) {
       .findOne({ email: authenticatedUser });
 
     const currentStatistics = user.statistics;
+    const dbDate = currentStatistics.timeCompleted;
     let updatedCount;
-    if (currentStatistics) {
-      if (
-        new Date(currentStatistics.timeCompleted).getDate() !==
-        new Date().getDate
-      ) {
-        updatedCount = { count: receivedCount, timeCompleted };
-      } else {
-        updatedCount = {
-          count: currentStatistics.count + receivedCount,
-          timeCompleted,
-        };
-      }
+    console.log(dbDate, timeCompleted);
+
+    if (currentStatistics && dbDate === timeCompleted) {
+      updatedCount = {
+        count: currentStatistics.count + receivedCount,
+        timeCompleted,
+      };
     } else {
       updatedCount = { count: receivedCount, timeCompleted };
     }
@@ -50,7 +46,9 @@ export default async function handler(req, res) {
         { email: authenticatedUser },
         { $set: { statistics: updatedCount } }
       );
-    res.status(200).json({ message: user.statistics });
+    res.status(200).json({
+      message: user.statistics,
+    });
     connect.close();
   } catch (error) {
     res.status(500).json({

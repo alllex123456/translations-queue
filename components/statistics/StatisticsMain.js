@@ -13,6 +13,15 @@ const StatisticsMain = ({ invoicingList, clients }) => {
       });
   }, []);
 
+  // const proba = invoicingList.map((item, index, array) => {
+  //   if (item.client === array[index].client) {
+  //     console.log(item.client, array[index].client);
+  //   } else {
+  //     return false;
+  //   }
+  // });
+  // console.log(proba);
+
   const totals = invoicingList
     .map((order) => (order.count * order.rate) / 2000)
     .reduce((acc, val) => acc + val, 0)

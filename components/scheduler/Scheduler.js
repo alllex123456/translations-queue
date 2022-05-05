@@ -96,10 +96,13 @@ const Profile = (props) => {
       method: 'POST',
       body: JSON.stringify({
         count: orderData.count,
-        timeCompleted: new Date(),
+        timeCompleted: new Date().getDate(),
       }),
       headers: { 'Content-Type': 'application/json' },
-    }).catch((error) => error.message);
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data.message))
+      .catch((error) => error.message);
 
     fetch('/api/orders/queueHandler', {
       method: 'DELETE',
