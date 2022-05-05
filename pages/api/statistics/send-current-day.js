@@ -27,10 +27,10 @@ export default async function handler(req, res) {
 
     const currentStatistics = user.statistics;
     let updatedCount;
-    if (currentStatistics.count && currentStatistics.timeCompleted) {
+    if (currentStatistics) {
       updatedCount = {
         count: currentStatistics.count + receivedCount,
-        timeCompleted: currentStatistics + timeCompleted,
+        timeCompleted,
       };
     } else {
       updatedCount = { count: receivedCount, timeCompleted };

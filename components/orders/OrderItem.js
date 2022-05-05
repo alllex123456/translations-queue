@@ -76,7 +76,9 @@ const OrderItem = (props) => {
           />
         ) : (
           <Link href={clientPath}>
-            <a className={classes.clientLink}> {clientName}</a>
+            <a className={classes.clientLink} target="_blank">
+              {clientName}
+            </a>
           </Link>
         )}
       </td>

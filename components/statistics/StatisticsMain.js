@@ -1,7 +1,25 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useEffect } from 'react';
+import Link from 'next/dist/client/link';
+
 import classes from './StatisticsMain.module.css';
 
 const StatisticsMain = ({ invoicingList, clients }) => {
+  const [statistics, setStatistics] = useState({});
+  useEffect(() => {
+    fetch('/api/statistics/get-current-day')
+      .then((res) => res.json())
+      .then((data) => {
+        if (
+          new Date(data.message.timeCompleted).getDate() !==
+          new Date().getDate()
+        ) {
+          setStatistics({ count: 0, timeCompleted: new Date() });
+        } else {
+          setStatistics(data.message);
+        }
+      });
+  }, []);
+
   const totals = invoicingList
     .map((order) => (order.count * order.rate) / 2000)
     .reduce((acc, val) => acc + val, 0)
@@ -14,22 +32,6 @@ const StatisticsMain = ({ invoicingList, clients }) => {
 
   //   return client.currency;
   // };
-
-  const getCountCurrentDay = () => {
-    const currentDate = new Date();
-    const completedCount = invoicingList.map((item) => {
-      if (
-        new Date(item.timeCompleted).toLocaleDateString() ===
-        currentDate.toLocaleDateString()
-      ) {
-        return item.count;
-      }
-    });
-
-    return completedCount
-      .map((item) => (typeof item === 'undefined' ? '' : item))
-      .reduce((acc, val) => +acc + +val, 0);
-  };
 
   const grouped = invoicingList.reduce(function (r, a) {
     r[a.client] = r[a.client] || [];
@@ -46,15 +48,19 @@ const StatisticsMain = ({ invoicingList, clients }) => {
       <div className={classes.totals}>
         <div className={classes.summary}>
           <p className={classes.completed}>Finalizat astăzi:</p>
-          <p>{getCountCurrentDay().toLocaleString('ro')} caractere</p>
-          <p>{(getCountCurrentDay() / 2000).toFixed()} pagini</p>
+          <p>{statistics.count} caractere</p>
+          <p>{(statistics.count / 2000).toFixed()} pagini</p>
           <h2>Sumă de facturat: {totals}</h2>
         </div>
         <h3>Totaluri pe client</h3>
         <ul>
           {Object.entries(grouped).map((item) => (
             <li className={classes.totalsClient} key={Math.random()}>
-              <p className={classes.name}>{item[0]}</p>
+              <p className={classes.name}>
+                <Link href={`clients/${item[0].replace(/ /g, '-')}/statement`}>
+                  <a target="_blank">{item[0]}</a>
+                </Link>
+              </p>
               <p className={classes.amount}>
                 {item[1]
                   .map((item) => (item.count * item.rate) / 2000)
