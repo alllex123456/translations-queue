@@ -36,11 +36,17 @@ const Profile = (props) => {
       }),
       headers: { 'Content-Type': 'application/json' },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('ERROR | The order could not be added');
+        }
+        return res.json();
+      })
       .then((data) => {
         setOrders(data.message);
         setIsFetching(false);
-      });
+      })
+      .catch((error) => alert(error.message));
   };
 
   const editOrderHandler = (orderData) => {
@@ -57,7 +63,12 @@ const Profile = (props) => {
       }),
       headers: { 'Content-Type': 'application/json' },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('ERROR | The order could not be edited');
+        }
+        return res.json();
+      })
       .then((data) => {
         setOrders(data.message);
       })
@@ -81,15 +92,16 @@ const Profile = (props) => {
       headers: { 'Content-Type': 'application/json' },
     })
       .then((res) => {
-        if (res.status !== 200) {
-          throw new Error(res.message);
+        if (!res.ok) {
+          throw new Error(
+            'ERROR | The order could not be registered as completed!'
+          );
         }
         return res.json();
       })
       .then((data) => console.log(data.message))
       .catch((error) => {
         alert(error.message);
-        return;
       });
 
     fetch('/api/statistics/send-current-day', {
@@ -100,9 +112,14 @@ const Profile = (props) => {
       }),
       headers: { 'Content-Type': 'application/json' },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('ERROR | Statistics could not be updated');
+        }
+        return res.json();
+      })
       .then((data) => console.log(data.message))
-      .catch((error) => error.message);
+      .catch((error) => alert(error.message));
 
     fetch('/api/orders/queueHandler', {
       method: 'DELETE',
@@ -111,7 +128,14 @@ const Profile = (props) => {
       }),
       headers: { 'Content-Type': 'application/json' },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(
+            'ERROR | The order could not be removed from pending!'
+          );
+        }
+        return res.json();
+      })
       .then((data) => {
         setOrders(data.message);
         setIsCompleting(false);
@@ -127,7 +151,12 @@ const Profile = (props) => {
       }),
       headers: { 'Content-Type': 'application/json' },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('ERROR | The order could not be deleted!');
+        }
+        return res.json();
+      })
       .then((data) => {
         setOrders(data.message);
         setIsCompleting(false);
