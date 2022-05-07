@@ -22,9 +22,9 @@ const MainHeader = (props) => {
         {router.pathname === '/clients' && 'Clienți'}
         {router.pathname === '/statistics' && 'Statistici'}
         {router.pathname === '/clients/[clientId]' &&
-          router.query.clientId.replace('-', ' ')}
+          router.query.clientId.replace(/-/g, ' ')}
         {router.pathname === '/clients/[clientId]/statement' &&
-          'Situație - ' + router.query.clientId.replace('-', ' ')}
+          'Situație - ' + router.query.clientId.replace(/-/g, ' ')}
       </h1>
       <div className={classes.navigation}>
         {session && (
