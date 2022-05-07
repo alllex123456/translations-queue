@@ -28,7 +28,6 @@ export default async function handler(req, res) {
     const currentStatistics = user.statistics;
     const dbDate = currentStatistics.timeCompleted;
     let updatedCount;
-    console.log(dbDate, timeCompleted);
 
     if (currentStatistics && dbDate === timeCompleted) {
       updatedCount = {

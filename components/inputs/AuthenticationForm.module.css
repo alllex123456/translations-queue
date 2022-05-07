@@ -3,7 +3,7 @@
   margin: 10rem auto;
   padding: 3rem;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-  border: 2px solid #228be6;
+  border: 2px solid #022f40;
   text-align: center;
 }
 
@@ -37,7 +37,7 @@
   color: #fff;
   cursor: pointer;
   display: block;
-  background: #228be6;
+  background: #022f40;
   padding: 1.5rem;
   border: none;
 }
@@ -51,12 +51,12 @@
   background: none;
   border: none;
   padding: 0.5rem;
-  color: #228be6;
+  color: #022f40;
   border: 2px solid transparent;
 }
 
 .toggle:hover {
-  border: 2px solid #228be6;
+  border: 2px solid #022f40;
 }
 
 .loading {

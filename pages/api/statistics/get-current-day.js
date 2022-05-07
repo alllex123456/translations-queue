@@ -21,7 +21,18 @@ export default async function handler(req, res) {
       .db()
       .collection('users')
       .findOne({ email: authenticatedUser });
-    res.status(200).json({ message: user.statistics });
+
+    let userStatistics;
+    if (user.statistics.timeCompleted !== new Date().getDate()) {
+      userStatistics = {
+        count: 0,
+        timeCompleted: new Date().getDate(),
+      };
+    } else {
+      userStatistics = user.statistics;
+    }
+
+    res.status(200).json({ message: userStatistics });
     connect.close();
   } catch (error) {
     res.status(500).json({

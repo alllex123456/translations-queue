@@ -13,6 +13,8 @@ const StatisticsMain = ({ invoicingList, clients }) => {
       });
   }, []);
 
+  console.log(statistics);
+
   // const proba = invoicingList.map((item, index, array) => {
   //   if (item.client === array[index].client) {
   //     console.log(item.client, array[index].client);
@@ -50,11 +52,8 @@ const StatisticsMain = ({ invoicingList, clients }) => {
       <div className={classes.totals}>
         <div className={classes.summary}>
           <p className={classes.completed}>Finalizat astăzi:</p>
-          <p>{statistics.count ? statistics.count : '...'} caractere</p>
-          <p>
-            {statistics.count ? (statistics.count / 2000).toFixed() : '...'}{' '}
-            pagini
-          </p>
+          <p>{statistics.count} caractere</p>
+          <p>{(statistics.count / 2000).toFixed()} pagini</p>
           <h2>Sumă de facturat: {totals}</h2>
         </div>
         <h3>Totaluri pe client</h3>
