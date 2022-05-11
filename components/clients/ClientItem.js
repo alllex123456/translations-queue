@@ -29,9 +29,9 @@ const ClientItem = (props) => {
   return (
     <li className={classes.item}>
       <div className={classes.name}>
-        <h3>
+        <p>
           Numele: <strong>{name}</strong>
-        </h3>
+        </p>
       </div>
       <div className={classes.group}>
         <p>Tarif: {rate}</p>

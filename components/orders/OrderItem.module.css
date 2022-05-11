@@ -1,5 +1,5 @@
 .row {
-  border-bottom: 1px solid #1864ab;
+  border-bottom: 1px solid var(--general-color-1);
 }
 
 .row td {
@@ -19,16 +19,15 @@
 
 .btn-complete {
   cursor: pointer;
-  background: #fff;
-  border: 1px solid #022f40;
+  background: transparent;
+  border: 1px solid var(--general-color-1);
   color: #000;
   font-weight: 700;
   transition: all 0.2s;
 }
 
 .btn-complete:hover {
-  color: #fff;
-  background: #022f40;
+  border: 1px solid var(--general-color-2);
 }
 
 .row .notes {
@@ -38,7 +37,7 @@
 .clientLink {
   font-size: 1.4rem;
   font-weight: 500;
-  color: rgb(27, 27, 167);
+  color: var(--font-color-1);
 }
 
 .clientLink:hover {

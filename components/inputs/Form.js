@@ -48,75 +48,9 @@ const Form = (props) => {
     notesInputRef.current.value = '';
   };
 
-  if (language === 'ro') {
-    return (
-      <form className={classes.form} onSubmit={submitHandler}>
-        <p className={classes.title}>Adaugă comandă nouă</p>
-        <div className={classes.controls}>
-          <label htmlFor="client">Client:</label>
-          <select
-            id="client"
-            ref={clientInputRef}
-            onChange={(e) =>
-              setRate(
-                rates[
-                  rates.findIndex((client) => client.name === e.target.value)
-                ].rate
-              )
-            }
-            required
-          >
-            <option>select &darr;</option>
-            {clientNames}
-          </select>
-        </div>
-        <div className={`${classes.controls} ${classes.flex}`}>
-          <div>
-            <label htmlFor="pages">
-              Volum estimat <br /> (în mii caractere + spații):
-            </label>
-            <input
-              type="number"
-              id="pages"
-              placeholder="e.g. 24000"
-              ref={pagesInputRef}
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="rate">Tarif:</label>
-            <input
-              type="number"
-              id="rate"
-              value={rate}
-              onChange={(e) => setRate(e.target.value)}
-              required
-            />
-          </div>
-        </div>
-        <div className={classes.controls}>
-          <label htmlFor="deadline">Termen:</label>
-          <input
-            type="datetime-local"
-            id="deadline"
-            ref={deadlineInputRef}
-            required
-          />
-        </div>
-        <div className={classes.controls}>
-          <label htmlFor="notes">Note (opțional):</label>
-          <textarea rows="5" id="notes" ref={notesInputRef}></textarea>
-        </div>
-        <button className={classes.btn}>
-          {props.isFetching ? 'Se încarcă...' : 'Înregistrează comanda'}
-        </button>
-      </form>
-    );
-  }
-
   return (
     <form className={classes.form} onSubmit={submitHandler}>
-      <p className={classes.title}>Add new order</p>
+      <p className={classes.title}>Adaugă comandă nouă</p>
       <div className={classes.controls}>
         <label htmlFor="client">Client:</label>
         <select
@@ -137,7 +71,7 @@ const Form = (props) => {
       <div className={`${classes.controls} ${classes.flex}`}>
         <div>
           <label htmlFor="pages">
-            Estimated workload <br /> (in thousand chars + spaces):
+            Volum estimat <br /> (în mii caractere + spații):
           </label>
           <input
             type="number"
@@ -148,7 +82,7 @@ const Form = (props) => {
           />
         </div>
         <div>
-          <label htmlFor="rate">Rate:</label>
+          <label htmlFor="rate">Tarif:</label>
           <input
             type="number"
             id="rate"
@@ -159,7 +93,7 @@ const Form = (props) => {
         </div>
       </div>
       <div className={classes.controls}>
-        <label htmlFor="deadline">Deadline:</label>
+        <label htmlFor="deadline">Termen:</label>
         <input
           type="datetime-local"
           id="deadline"
@@ -168,14 +102,77 @@ const Form = (props) => {
         />
       </div>
       <div className={classes.controls}>
-        <label htmlFor="notes">Notes (optional):</label>
+        <label htmlFor="notes">Note (opțional):</label>
         <textarea rows="5" id="notes" ref={notesInputRef}></textarea>
       </div>
       <button className={classes.btn}>
-        {props.isFetching ? 'Loading...' : 'Register order'}
+        {props.isFetching ? 'Se încarcă...' : 'Înregistrează comanda'}
       </button>
     </form>
   );
+
+  // return (
+  //   <form className={classes.form} onSubmit={submitHandler}>
+  //     <p className={classes.title}>Add new order</p>
+  //     <div className={classes.controls}>
+  //       <label htmlFor="client">Client:</label>
+  //       <select
+  //         id="client"
+  //         ref={clientInputRef}
+  //         onChange={(e) =>
+  //           setRate(
+  //             rates[rates.findIndex((client) => client.name === e.target.value)]
+  //               .rate
+  //           )
+  //         }
+  //         required
+  //       >
+  //         <option>select &darr;</option>
+  //         {clientNames}
+  //       </select>
+  //     </div>
+  //     <div className={`${classes.controls} ${classes.flex}`}>
+  //       <div>
+  //         <label htmlFor="pages">
+  //           Estimated workload <br /> (in thousand chars + spaces):
+  //         </label>
+  //         <input
+  //           type="number"
+  //           id="pages"
+  //           placeholder="e.g. 24000"
+  //           ref={pagesInputRef}
+  //           required
+  //         />
+  //       </div>
+  //       <div>
+  //         <label htmlFor="rate">Rate:</label>
+  //         <input
+  //           type="number"
+  //           id="rate"
+  //           value={rate}
+  //           onChange={(e) => setRate(e.target.value)}
+  //           required
+  //         />
+  //       </div>
+  //     </div>
+  //     <div className={classes.controls}>
+  //       <label htmlFor="deadline">Deadline:</label>
+  //       <input
+  //         type="datetime-local"
+  //         id="deadline"
+  //         ref={deadlineInputRef}
+  //         required
+  //       />
+  //     </div>
+  //     <div className={classes.controls}>
+  //       <label htmlFor="notes">Notes (optional):</label>
+  //       <textarea rows="5" id="notes" ref={notesInputRef}></textarea>
+  //     </div>
+  //     <button className={classes.btn}>
+  //       {props.isFetching ? 'Loading...' : 'Register order'}
+  //     </button>
+  //   </form>
+  // );
 };
 
 export default Form;

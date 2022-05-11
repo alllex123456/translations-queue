@@ -1,6 +1,5 @@
 .form {
-  background-color: rgba(56, 174, 204, 0.1);
-  padding: 1rem;
+  background: rgba(250, 244, 211, 0.5);
 }
 
 .flex {
@@ -14,20 +13,27 @@
 }
 
 .title {
-  font-size: 2rem;
-  font-weight: 500;
+  font-size: 1.6rem;
+  font-weight: 700;
+  padding: 2rem;
+  background: var(--general-color-1);
+  color: var(--font-color-2);
 }
 
 .controls input,
-.controls label,
-.controls select {
+.controls select,
+.controls textarea {
   font: inherit;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
+  border: none;
+  background: transparent;
+  border-bottom: 1px solid black;
 }
 
 .controls label {
   display: block;
   font-weight: 600;
+  font-size: 1.4rem;
 }
 
 .controls input,
@@ -38,8 +44,9 @@
 
 .controls textarea {
   font: inherit;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   width: 100%;
+  background: transparent;
 }
 
 .btn {
@@ -49,12 +56,11 @@
   width: 100%;
   color: #000;
   font-weight: 600;
-  border: 1px solid #022f40;
-  background-color: #fff;
+  box-shadow: 0 0 1px 1px var(--general-color-1);
+  background: transparent;
   transition: all 0.2s;
 }
 
 .btn:hover {
-  background-color: #022f40;
-  color: #fff;
+  box-shadow: 0 0 2px 1px var(--general-color-1);
 }

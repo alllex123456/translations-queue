@@ -60,7 +60,7 @@ const UserProfile = (props) => {
   if (isEditing) {
     return (
       <Modal onClose={() => setIsEditing(false)}>
-        <form onSubmit={submitHandler}>
+        <form className={classes.form} onSubmit={submitHandler}>
           <div className={classes.personal}>
             <h3>Preferințe personale</h3>
             <label htmlFor="language">Limbă</label>
@@ -76,7 +76,7 @@ const UserProfile = (props) => {
           <div className={classes.business}>
             <h3>Informații juridice</h3>
             <div className={classes.businessData}>
-              <div>
+              <div className={classes.formGroup}>
                 <label htmlFor="name">Denumire firmă</label>
                 <input
                   type="text"
@@ -93,7 +93,7 @@ const UserProfile = (props) => {
                   onChange={(e) => setEnteredRegNumber(e.target.value)}
                 />
               </div>
-              <div>
+              <div className={classes.formGroup}>
                 <label htmlFor="taxno">Cod fiscal</label>
                 <input
                   type="text"
@@ -111,7 +111,7 @@ const UserProfile = (props) => {
                   onChange={(e) => setEnteredRegOffice(e.target.value)}
                 />
               </div>
-              <div>
+              <div className={classes.formGroup}>
                 <label htmlFor="email">Email</label>
                 <input
                   type="email"
@@ -147,13 +147,27 @@ const UserProfile = (props) => {
         <Button onClick={() => setIsEditing(true)}>Editează</Button>
       </div>
       <div className={classes.userInfo}>
-        <p>Limba selectată: {enteredLanguage}</p>
-        <p>Denumire firmă: {enteredName}</p>
-        <p>Număr de înregistrare: {enteredRegNumber}</p>
-        <p>Cod fiscal: {enteredTaxNumber}</p>
-        <p>Sediul: {enteredRegOffice}</p>
-        <p>Email: {enteredEmail}</p>
-        <p>Telefon: {enteredPhone}</p>
+        <p>
+          Limba selectată: <strong>{enteredLanguage}</strong>
+        </p>
+        <p>
+          Denumire firmă: <strong>{enteredName}</strong>
+        </p>
+        <p>
+          Număr de înregistrare: <strong>{enteredRegNumber}</strong>
+        </p>
+        <p>
+          Cod fiscal: <strong>{enteredTaxNumber}</strong>
+        </p>
+        <p>
+          Sediul: <strong>{enteredRegOffice}</strong>
+        </p>
+        <p>
+          Email: <strong>{enteredEmail}</strong>
+        </p>
+        <p>
+          Telefon: <strong>{enteredPhone}</strong>
+        </p>
       </div>
     </Fragment>
   );

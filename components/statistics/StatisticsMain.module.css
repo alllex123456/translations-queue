@@ -1,7 +1,25 @@
 .totals {
-  width: 30%;
-  margin-left: 10rem;
   font-size: 1.4rem;
+
+  display: flex;
+  gap: 3rem;
+}
+
+.statisticsGroup {
+  width: 60rem;
+}
+
+.totalToInvoice {
+  padding: 3rem 1rem;
+  background: var(--general-color-1);
+  color: var(--general-color-2);
+  font-weight: 600;
+}
+
+.totalsClients {
+  padding: 3rem 1rem;
+  background: var(--general-color-1);
+  color: var(--font-color-2);
 }
 
 .summary {
@@ -38,4 +56,7 @@
 .completed {
   border-bottom: 1px solid #333;
   font-weight: 500;
+  padding: 3rem 1rem;
+  background: var(--general-color-1);
+  color: var(--font-color-2);
 }

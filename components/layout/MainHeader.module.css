@@ -1,5 +1,5 @@
 .header {
-  background-color: #022f40;
+  background-color: var(--backgrounds-primary);
   padding: 1rem 2rem;
 
   display: flex;
@@ -7,31 +7,74 @@
   align-items: center;
 }
 
+.header h1 {
+  color: var(--general-color-2);
+}
+
 .title {
   font-size: 3rem;
 }
 
-.navigation {
+.navigation__top {
   display: flex;
   align-items: center;
   gap: 2rem;
+
+  color: var(--font-color-2);
+}
+
+.navigation__bottom {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+
+  background: var(--backgrounds-primary);
+  width: 100%;
+  padding-bottom: 1rem;
+  z-index: 10;
+  transform: translateX(-50%);
+
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.navigation__bottom-item {
+  text-align: center;
+
+  transition: all 0.3s;
+}
+
+.navigation__bottom-item:hover {
+  transform: scale(1.1);
+}
+
+.navigation__bottom-icon {
+  color: var(--font-color-2);
+}
+
+.navigation__bottom-text {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--font-color-2);
+  opacity: 0.3;
+  transform: translateY(1rem);
+
+  transition: all 0.3s;
+}
+
+.navigation__bottom-item:hover .navigation__bottom-text {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.navigation__bottom-item:hover .navigation__bottom-icon {
+  color: var(--general-color-2);
 }
 
 .user {
   font-size: 1.5rem;
-  color: #fff;
   margin-right: 5rem;
-}
-
-.header a {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #fff;
-  border-bottom: 1px solid transparent;
-}
-
-.header a:hover {
-  border-bottom: 1px solid #fff;
 }
 
 .header button {
@@ -39,13 +82,19 @@
   font: inherit;
   font-size: 1.6rem;
   font-weight: 700;
-  color: #fff;
-  border: 2px solid #fff;
+  color: inherit;
+  border: 2px solid var(--general-color-1);
+  outline: 3px solid transparent;
   padding: 1rem;
   border-radius: 2px;
   background: transparent;
+  transition: all 0.3s;
 }
 
 .header button:hover {
-  outline: 3px solid #fff;
+  outline: 3px solid var(--general-color-2);
+}
+
+.linkTree {
+  color: var(--font-color-2);
 }

@@ -1,4 +1,4 @@
-import classes from './AddClientcopy.module.css';
+import classes from './AddClient.module.css';
 import { useRef, useState } from 'react';
 
 const AddClient = (props) => {

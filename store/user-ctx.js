@@ -17,7 +17,6 @@ export const UserContextProvider = (props) => {
     language: userInfo?.language,
   };
 
-  console.log(initialValues);
   return (
     <UserContext.Provider value={initialValues}>
       {props.children}

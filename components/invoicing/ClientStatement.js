@@ -1,11 +1,12 @@
 import classes from './ClientStatement.module.css';
 import { useEffect, useState, Fragment } from 'react';
+
 import StatementItem from './StatementItem';
 import Button from '../layout/Button';
 import GeneratePDF from '../PDF/GeneratePDF';
 
 const ClientStatement = (props) => {
-  const { name, currency, notes } = props.client;
+  const { name, currency } = props.client;
   const [selectedItems, setSelectedItems] = useState([]);
   const [highlighted, setHighlighted] = useState([]);
 

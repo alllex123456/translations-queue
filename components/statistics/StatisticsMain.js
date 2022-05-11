@@ -13,29 +13,10 @@ const StatisticsMain = ({ invoicingList, clients }) => {
       });
   }, []);
 
-  console.log(statistics);
-
-  // const proba = invoicingList.map((item, index, array) => {
-  //   if (item.client === array[index].client) {
-  //     console.log(item.client, array[index].client);
-  //   } else {
-  //     return false;
-  //   }
-  // });
-  // console.log(proba);
-
   const totals = invoicingList
     .map((order) => (order.count * order.rate) / 2000)
     .reduce((acc, val) => acc + val, 0)
     .toFixed();
-
-  // const getCurrency = (clientName) => {
-  //   const client = clients.find((item) =>
-  //     item.name === clientName;
-  //   );
-
-  //   return client.currency;
-  // };
 
   const grouped = invoicingList.reduce(function (r, a) {
     r[a.client] = r[a.client] || [];
@@ -48,15 +29,18 @@ const StatisticsMain = ({ invoicingList, clients }) => {
   );
 
   return (
-    <Fragment>
-      <div className={classes.totals}>
+    // <Fragment>
+    <div className={classes.totals}>
+      <div className={classes.statisticsGroup}>
+        <p className={classes.totalToInvoice}>Sumă de facturat: {totals}</p>
         <div className={classes.summary}>
           <p className={classes.completed}>Finalizat astăzi:</p>
           <p>{statistics.count} caractere</p>
           <p>{(statistics.count / 2000).toFixed()} pagini</p>
-          <h2>Sumă de facturat: {totals}</h2>
         </div>
-        <h3>Totaluri pe client</h3>
+      </div>
+      <div className={classes.statisticsGroup}>
+        <p className={classes.totalsClients}>Totaluri pe client</p>
         <ul>
           {Object.entries(grouped).map((item) => (
             <li className={classes.totalsClient} key={Math.random()}>
@@ -76,22 +60,24 @@ const StatisticsMain = ({ invoicingList, clients }) => {
           ))}
         </ul>
       </div>
-      <div className={classes.orders}>
-        <h3>Statistici de lucru</h3>
-        <h4>Lucrări finalizate recent</h4>
-        <ul>
-          {sortedRecentOrders.map((item) => (
-            <li className={classes.recent} key={Math.random()}>
-              <p>{item.client}</p>
-              <p>
-                Valoare: {((item.count * item.rate) / 2000).toFixed()}{' '}
-                {/* {getCurrency(item.client)} */}
-              </p>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </Fragment>
+    </div>
+
+    // <div className={classes.orders}>
+    //   <h3>Statistici de lucru</h3>
+    //   <h4>Lucrări finalizate recent</h4>
+    //   <ul>
+    //     {sortedRecentOrders.map((item) => (
+    //       <li className={classes.recent} key={Math.random()}>
+    //         <p>{item.client}</p>
+    //         <p>
+    //           Valoare: {((item.count * item.rate) / 2000).toFixed()}{' '}
+    //           {/* {getCurrency(item.client)} */}
+    //         </p>
+    //       </li>
+    //     ))}
+    //   </ul>
+    // </div>
+    // </Fragment>
   );
 };
 

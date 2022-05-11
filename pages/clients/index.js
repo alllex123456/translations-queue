@@ -1,12 +1,12 @@
 import { Fragment } from 'react';
 import Clients from '../../components/clients/Clients';
-import AddClientcopy from '../../components/inputs/AddClientcopy';
+import AddClient from '../../components/inputs/AddClient';
 
 const ClientsPage = () => {
   return (
     <Fragment>
       <Clients />
-      <AddClientcopy />
+      <AddClient />
     </Fragment>
   );
 };

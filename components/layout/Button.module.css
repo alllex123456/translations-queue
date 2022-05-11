@@ -1,19 +1,17 @@
 .button {
   font: inherit;
   cursor: pointer;
-  background: #046e8f;
+  background: transparent;
   border: none;
   padding: 1rem;
-  color: #fff;
+  color: var(--font-color-1);
   text-align: center;
   font-weight: 500;
   font-size: 1.2rem;
-  border: 1px solid transparent;
-  transition: all 0.3s;
+  box-shadow: 0 0 2px 2px var(--general-color-1);
+  transition: all 0.2s;
 }
 
 .button:hover {
-  background: transparent;
-  border: 1px solid #046e8f;
-  color: #000;
+  box-shadow: 0 0 3px 1px var(--general-color-1);
 }

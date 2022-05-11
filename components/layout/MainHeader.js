@@ -1,5 +1,5 @@
 import classes from './MainHeader.module.css';
-
+import { AddressBook, ChartBar, Clock, User } from 'phosphor-react';
 import Link from 'next/link';
 import { useSession, signOut } from 'next-auth/client';
 import { useRouter } from 'next/router';
@@ -26,22 +26,77 @@ const MainHeader = (props) => {
         {router.pathname === '/clients/[clientId]/statement' &&
           'Situație - ' + router.query.clientId.replace(/-/g, ' ')}
       </h1>
-      <div className={classes.navigation}>
+
+      <div className={classes.navigation__top}>
         {session && (
           <p className={classes.user}>
             Utilizator autentificat: {session.user.email}
           </p>
         )}
         {!session && <Link href="/">Autentificare</Link>}
-        {session && <Link href="/statistics">Statistici</Link>}
-        {session && <Link href="/clients">Clienți</Link>}
-        {session && <Link href="/scheduler">Organizator</Link>}
-        {/* {session && <Link href="/invoicing">Invoicing</Link>} */}
-        {session && <Link href="/profile">Profil utilizator</Link>}
         {session && !loading && (
           <button type="button" onClick={signoutHandler}>
             Deconectare
           </button>
+        )}
+      </div>
+      <div className={classes.navigation__bottom}>
+        {session && (
+          <Link href="/statistics">
+            <a>
+              <div className={classes['navigation__bottom-item']}>
+                <p className={classes['navigation__bottom-text']}>Statistici</p>
+                <ChartBar
+                  className={classes['navigation__bottom-icon']}
+                  size={48}
+                />
+              </div>
+            </a>
+          </Link>
+        )}
+        {session && (
+          <Link href="/clients">
+            <a>
+              <div className={classes['navigation__bottom-item']}>
+                <p className={classes['navigation__bottom-text']}>Clienți</p>
+                <AddressBook
+                  className={classes['navigation__bottom-icon']}
+                  size={48}
+                />
+              </div>
+            </a>
+          </Link>
+        )}
+        {session && (
+          <Link href="/scheduler">
+            <a>
+              <div className={classes['navigation__bottom-item']}>
+                <p className={classes['navigation__bottom-text']}>
+                  Organizator
+                </p>
+                <Clock
+                  className={classes['navigation__bottom-icon']}
+                  size={48}
+                />
+              </div>
+            </a>
+          </Link>
+        )}
+        {/* {session && <Link href="/invoicing">Invoicing</Link>} */}
+        {session && (
+          <Link href="/profile">
+            <a>
+              <div className={classes['navigation__bottom-item']}>
+                <p className={classes['navigation__bottom-text']}>
+                  Profil utilizator
+                </p>
+                <User
+                  className={classes['navigation__bottom-icon']}
+                  size={48}
+                />
+              </div>
+            </a>
+          </Link>
         )}
       </div>
     </header>

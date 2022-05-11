@@ -1,7 +1,7 @@
 .table {
+  margin-top: 1.6rem;
   width: 100%;
-  padding: 0 1rem;
-  background: #e9ecef;
+  background: var(--backgrounds-secondary);
   font-size: 1.6rem;
   border-collapse: collapse;
   align-self: flex-start;
@@ -10,14 +10,14 @@
 }
 
 .head td {
-  background: #0b7285;
-  color: #fff;
-  font-weight: 700;
+  background: var(--general-color-1);
+  color: var(--font-color-2);
+  font-weight: 400;
   padding: 2rem 1rem;
 }
 
 .client {
-  width: 25rem;
+  width: 30rem;
 }
 
 .rate {

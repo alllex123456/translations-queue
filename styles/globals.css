@@ -1,5 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600;1,700&display=swap');
+
+:root {
+  --backgrounds-primary: #0c1618; /*rgba(12, 22, 24, 1)*/
+  --backgrounds-secondary: #faf4d3; /*rgba(250, 244, 211, 1)*/
+  --general-color-1: #004643; /*rgba(0, 70, 67, 1)*/
+  --general-color-2: #d1ac00; /*rgba(209, 172, 0, 1)*/
+  --general-color-3: #f6be9a; /*rgba(246, 190, 154, 1)*/
+  --font-color-1: #0c1618; /*rgba(12, 22, 24, 1)*/
+  --font-color-2: #faf4d3; /*rgba(250, 244, 211, 1)*/
+}
+
 html {
   font-size: 62.5%;
+  background: rgba(250, 244, 211, 0.2);
+  background: var(--backgrounds-secondary);
 }
 
 @media (max-width: 1100px) {
@@ -12,16 +26,13 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  margin-bottom: 10rem;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: var(--font-color-1);
 }
 
 a {
-  color: rgb(14, 51, 84);
-}
-
-a:hover {
-  color: #0f6e91;
+  text-decoration: none;
 }
 
 * {
@@ -44,4 +55,10 @@ h2 {
 
 h3 {
   font-size: 1.6rem;
+}
+
+input,
+textarea,
+select {
+  outline: none;
 }
