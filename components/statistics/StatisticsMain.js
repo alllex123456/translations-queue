@@ -3,7 +3,7 @@ import Link from 'next/dist/client/link';
 
 import classes from './StatisticsMain.module.css';
 
-const StatisticsMain = ({ invoicingList, clients }) => {
+const StatisticsMain = ({ invoicingList }) => {
   const [statistics, setStatistics] = useState({});
   useEffect(() => {
     fetch('/api/statistics/get-current-day')

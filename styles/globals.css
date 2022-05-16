@@ -1,13 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600;1,700&display=swap');
 
 :root {
-  --backgrounds-primary: #0c1618; /*rgba(12, 22, 24, 1)*/
-  --backgrounds-secondary: #faf4d3; /*rgba(250, 244, 211, 1)*/
+  --backgrounds-primary: #353535; /*rgba(53, 53, 53, 1)*/
+  --backgrounds-secondary: #8be8cb;
+  --backgrounds-secondary-shade: rgba(139, 232, 203, 0.5);
+
   --general-color-1: #004643; /*rgba(0, 70, 67, 1)*/
-  --general-color-2: #d1ac00; /*rgba(209, 172, 0, 1)*/
-  --general-color-3: #f6be9a; /*rgba(246, 190, 154, 1)*/
+  --general-color-2: #12eaea;
+  --general-color-3: #8be8cb;
+
   --font-color-1: #0c1618; /*rgba(12, 22, 24, 1)*/
-  --font-color-2: #faf4d3; /*rgba(250, 244, 211, 1)*/
+  --font-color-2: #fff;
 }
 
 html {

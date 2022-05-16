@@ -1,5 +1,5 @@
 .form {
-  background: rgba(250, 244, 211, 0.5);
+  background: var(--backgrounds-secondary-shade);
   padding: 1rem;
   margin-left: 5rem;
 

@@ -1,7 +1,7 @@
 .table {
   margin-top: 1.6rem;
   width: 100%;
-  background: var(--backgrounds-secondary);
+  background: var(--backgrounds-secondary-shade);
   font-size: 1.6rem;
   border-collapse: collapse;
   align-self: flex-start;

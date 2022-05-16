@@ -105,9 +105,12 @@ const Form = (props) => {
         <label htmlFor="notes">Note (opțional):</label>
         <textarea rows="5" id="notes" ref={notesInputRef}></textarea>
       </div>
-      <button className={classes.btn}>
-        {props.isFetching ? 'Se încarcă...' : 'Înregistrează comanda'}
-      </button>
+
+      <div className={classes.controls}>
+        <button className={classes.btn}>
+          {props.isFetching ? 'Se încarcă...' : 'Înregistrează comanda'}
+        </button>
+      </div>
     </form>
   );
 

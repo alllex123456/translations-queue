@@ -1,5 +1,5 @@
 .list {
-  background-color: rgba(56, 174, 204, 0.1);
+  background-color: var(--backgrounds-secondary-shade);
   width: 80rem;
   margin: 0 auto;
   padding: 3rem;
